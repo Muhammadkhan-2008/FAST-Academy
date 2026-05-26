@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useUser, useAuth } from '@clerk/clerk-react';
+import { API_URL as BASE_URL } from '../utils/api';
 
 const SchoolContext = createContext();
 
@@ -11,7 +12,7 @@ export const SchoolProvider = ({ children }) => {
   const [stats, setStats] = useState({ totalStudents: 0, totalTeachers: 0, activeCourses: 0, pendingVerifications: 0 });
   const [data, setData] = useState({ courses: [], pendingUsers: [] });
 
-  const API_URL = 'http://localhost:5000/api';
+  const API_URL = `${BASE_URL}/api`;
 
   // Sync Clerk User with Local App User state
   useEffect(() => {

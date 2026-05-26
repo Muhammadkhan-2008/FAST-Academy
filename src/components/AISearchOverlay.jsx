@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, ArrowRight, BookOpen, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../utils/api';
 
 const AISearchOverlay = ({ query, setQuery }) => {
   const [results, setResults] = useState(null);
@@ -12,7 +13,7 @@ const AISearchOverlay = ({ query, setQuery }) => {
     if (!query) return;
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/ai/search', {
+      const res = await fetch(`${API_URL}/api/ai/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query })

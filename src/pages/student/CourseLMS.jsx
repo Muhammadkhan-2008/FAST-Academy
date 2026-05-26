@@ -52,7 +52,7 @@ const CourseLMS = () => {
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem', overflow: 'hidden' }}>
         
         {/* Video Player Section */}
-        <div className="glass-panel" style={{ background: '#000', borderRadius: '16px', aspectRation: '16/9', overflow: 'hidden', position: 'relative' }}>
+        <div className="glass-panel" style={{ background: '#000', borderRadius: '16px', aspectRatio: '16/9', overflow: 'hidden', position: 'relative' }}>
            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ textAlign: 'center', color: 'white' }}>
                  <Play size={64} style={{ marginBottom: '1rem', cursor: 'pointer', color: 'var(--primary)' }} />

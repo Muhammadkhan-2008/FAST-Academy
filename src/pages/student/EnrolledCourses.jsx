@@ -3,6 +3,7 @@ import { useSchool } from '../../context/SchoolContext';
 import { BookOpen, Play, FileText, ChevronRight, Lock, Radio } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../utils/api';
 
 const EnrolledCourses = () => {
   const { data, user } = useSchool();
@@ -17,7 +18,7 @@ const EnrolledCourses = () => {
 
   const fetchActiveSessions = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/sessions/active');
+      const res = await fetch(`${API_URL}/api/sessions/active`);
       const sessions = await res.json();
       setActiveSessions(sessions);
     } catch (err) { console.error('Sessions fetch failed'); }

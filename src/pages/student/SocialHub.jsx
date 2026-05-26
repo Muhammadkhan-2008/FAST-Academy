@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSchool } from '../../context/SchoolContext';
 import { Search, Send, Smile, Paperclip, CheckCheck, User, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { API_URL } from '../../utils/api';
 
 const SocialHub = () => {
   const { user } = useSchool();
@@ -12,7 +13,7 @@ const SocialHub = () => {
   const [loading, setLoading] = useState(true);
   const scrollRef = useRef();
 
-  const API_URL = 'http://localhost:5000/api';
+  const SOCIAL_API = `${API_URL}/api`;
 
   useEffect(() => {
     fetchContacts();
@@ -28,7 +29,7 @@ const SocialHub = () => {
 
   const fetchContacts = async () => {
     try {
-      const res = await fetch(`${API_URL}/admin/users`);
+      const res = await fetch(`${SOCIAL_API}/admin/users`);
       const data = await res.json();
       // Filter out self
       setContacts(data.filter(c => c.clerkId !== user.id));

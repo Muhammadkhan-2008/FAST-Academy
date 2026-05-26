@@ -40,7 +40,7 @@ const StudentClassroom = () => {
                      <h2 style={{ fontSize: '1.75rem', fontWeight: 900, marginTop: '0.5rem' }}>{course.name}</h2>
                      <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', marginTop: '0.25rem', fontWeight: 600 }}>Faculty Instructor: Prof. Alexander</p>
                   </div>
-                  <button onClick={() => navigate(`/student/course/${course.id}`)} className="premium-btn-ghost" style={{ padding: '0.6rem 1.5rem' }}>
+                  <button onClick={() => navigate(`/student/course/${course._id || course.id}`)} className="premium-btn-ghost" style={{ padding: '0.6rem 1.5rem' }}>
                      ENTER LMS <ArrowRight size={18} />
                   </button>
                </div>

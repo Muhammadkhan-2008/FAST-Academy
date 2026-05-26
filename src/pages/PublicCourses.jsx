@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { useUser, useAuth } from '@clerk/clerk-react';
+import { API_URL } from '../utils/api';
 
 const EnrollmentDialog = ({ course, onClose, onConfirm }) => (
   <motion.div 
@@ -59,7 +60,7 @@ const PublicCourses = () => {
     // Initial fetch from backend
     const fetchCourses = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/courses');
+        const res = await fetch(`${API_URL}/api/courses`);
         const data = await res.json();
         if (data.length > 0) setCourses(data);
         else {
@@ -88,14 +89,14 @@ const PublicCourses = () => {
     if (!user) { navigate('/login'); return; }
     try {
       const token = await getToken();
-      const res = await fetch('http://localhost:5000/api/courses/enroll', {
+      const res = await fetch(`${API_URL}/api/courses/enroll`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ courseId: selectedCourse._id, studentId: user.id })
       });
       if (res.ok) {
         setSuccess(true);
-        setTimeout(() => { setSuccess(false); setSelectedCourse(null); navigate('/student/classroom'); }, 2000);
+        setTimeout(() => { setSuccess(false); setSelectedCourse(null); navigate('/student'); }, 2000);
       } else {
         throw new Error("Backend failed");
       }
@@ -103,7 +104,7 @@ const PublicCourses = () => {
       console.error('Enrollment failed, falling back to mock success', err); 
       // Fallback for demonstration when backend is down
       setSuccess(true);
-      setTimeout(() => { setSuccess(false); setSelectedCourse(null); navigate('/student/classroom'); }, 2000);
+      setTimeout(() => { setSuccess(false); setSelectedCourse(null); navigate('/student'); }, 2000);
     }
   };
 

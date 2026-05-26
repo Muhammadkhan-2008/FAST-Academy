@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Shield, ArrowRight, CheckCircle, FileText, Lock } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { API_URL } from '../utils/api';
 
 const ApplicationForm = () => {
   const { isLoaded, isSignedIn, getToken } = useAuth();
@@ -43,7 +44,7 @@ const ApplicationForm = () => {
     setStatus('submitting');
     try {
       const token = await getToken();
-      const response = await fetch('http://localhost:5000/api/applications', {
+      const response = await fetch(`${API_URL}/api/applications`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

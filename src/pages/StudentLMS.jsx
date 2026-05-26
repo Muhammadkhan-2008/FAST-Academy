@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   PlayCircle, FileText, CheckCircle, Clock, 
@@ -9,6 +9,87 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
+import { API_URL } from '../utils/api';
+
+// Neural AI Chat Component
+const NeuralAIChat = () => {
+  const [messages, setMessages] = useState([
+    { role: 'assistant', text: 'Neural link established. I am FAST AI. How can I accelerate your learning today, Scholar?' }
+  ]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const send = async (e) => {
+    e.preventDefault();
+    if (!input.trim() || loading) return;
+    const userMsg = input;
+    setInput('');
+    setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/api/fast-ai/query`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: userMsg })
+      });
+      const data = await res.json();
+      setMessages(prev => [...prev, { role: 'assistant', text: data.response || 'Neural link unstable. Try again.' }]);
+    } catch (err) {
+      setMessages(prev => [...prev, { role: 'assistant', text: 'Connection to institutional AI failed. Please ensure the server is running.' }]);
+    }
+    setLoading(false);
+  };
+
+  return (
+    <>
+      <div style={{ flex: 1, padding: '2rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        {messages.map((m, i) => (
+          <div key={i} style={{ 
+            alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start', 
+            maxWidth: '70%', 
+            background: m.role === 'user' ? 'var(--primary)' : 'rgba(255,255,255,0.04)', 
+            padding: '1rem 1.5rem', 
+            borderRadius: '18px', 
+            border: '1px solid var(--border-light)', 
+            color: m.role === 'user' ? 'white' : 'var(--text-main)', 
+            fontSize: '0.95rem', 
+            lineHeight: 1.6 
+          }}>
+            {m.text}
+          </div>
+        ))}
+        {loading && (
+          <div style={{ alignSelf: 'flex-start', color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 800 }}>
+            NEURAL PROCESSING...
+          </div>
+        )}
+        <div ref={scrollRef} />
+      </div>
+      <form onSubmit={send} style={{ padding: '1.5rem', borderTop: '1px solid var(--border-light)', display: 'flex', gap: '1rem' }}>
+        <input 
+          value={input} 
+          onChange={e => setInput(e.target.value)} 
+          placeholder="Ask FAST AI anything..." 
+          style={{ 
+            flex: 1, padding: '1rem 1.5rem', 
+            background: 'rgba(255,255,255,0.04)', 
+            border: '1px solid var(--border-light)', 
+            borderRadius: '12px', color: 'white', 
+            outline: 'none', fontSize: '0.9rem' 
+          }} 
+        />
+        <button type="submit" className="premium-btn" style={{ padding: '1rem 2rem' }} disabled={loading}>
+          <Send size={18} />
+        </button>
+      </form>
+    </>
+  );
+};
 
 const StudentLMS = () => {
   const { user, isLoaded } = useUser();
@@ -16,17 +97,56 @@ const StudentLMS = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [chatOpen, setChatOpen] = useState(false);
+  const [lmsMessages, setLmsMessages] = useState([]);
+  const [lmsMsg, setLmsMsg] = useState('');
+  const chatScrollRef = useRef(null);
 
-  // Mock data for enrolled courses
-  const [enrolledCourses] = useState([
+  const enrolledCourses = [
     { 
       id: 'c1', title: 'ADVANCED NEURAL ARCHITECTURE', instructor: 'Dr. Sarah Khan', 
-      progress: 65, color: 'var(--primary)', icon: <Brain size={24} />,
+      progress: 65, color: 'var(--primary)',
       syllabus: ['Neural Foundations', 'Backpropagation Deep-Dive', 'Transformer Models'],
       notes: [{ title: 'Lecture 1: Gradient Descent', date: '2026-05-01' }],
       labs: [{ title: 'Neural Sandbox Alpha', id: 'ai' }]
     }
-  ]);
+  ];
+
+  useEffect(() => {
+    if (chatOpen) fetchLmsMessages();
+    const interval = chatOpen ? setInterval(fetchLmsMessages, 5000) : null;
+    return () => { if (interval) clearInterval(interval); };
+  }, [chatOpen]);
+
+  useEffect(() => {
+    chatScrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [lmsMessages]);
+
+  const fetchLmsMessages = async () => {
+    try {
+      const res = await fetch(`${API_URL}/api/chat/LMS_Global`);
+      const data = await res.json();
+      setLmsMessages(Array.isArray(data) ? data : []);
+    } catch (err) { console.error('Chat fetch failed'); }
+  };
+
+  const sendLmsMessage = async (e) => {
+    e.preventDefault();
+    if (!lmsMsg.trim() || !user) return;
+    try {
+      await fetch(`${API_URL}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          senderId: user.id,
+          senderName: user.fullName || user.username || 'Scholar',
+          text: lmsMsg,
+          channel: 'LMS_Global'
+        })
+      });
+      setLmsMsg('');
+      fetchLmsMessages();
+    } catch (err) { console.error('Send failed'); }
+  };
 
   if (!isLoaded) return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-deep)' }}>
@@ -39,7 +159,6 @@ const StudentLMS = () => {
       case 'dashboard':
         return (
           <div className="reveal">
-            {/* 🛸 ELITE METRICS */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', marginBottom: '3rem' }}>
                 {[
                   { label: 'MASTERY UNITS', val: '128', icon: <Target size={20} />, color: 'var(--primary)' },
@@ -68,7 +187,9 @@ const StudentLMS = () => {
                       >
                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                              <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-                                <div style={{ width: '70px', height: '70px', background: 'var(--bg-subtle)', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: course.color, border: '1px solid var(--border-light)', boxShadow: `0 0 20px ${course.color}20` }}>{course.icon}</div>
+                                <div style={{ width: '70px', height: '70px', background: 'var(--bg-subtle)', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: course.color, border: '1px solid var(--border-light)', boxShadow: `0 0 20px ${course.color}20` }}>
+                                  <Brain size={28} />
+                                </div>
                                 <div>
                                    <h3 style={{ fontSize: '1.75rem', fontWeight: 900, letterSpacing: '-0.03em' }}>{course.title}</h3>
                                    <p style={{ fontSize: '0.9rem', color: 'var(--text-dim)', fontWeight: 600 }}>FACULTY: {course.instructor}</p>
@@ -103,7 +224,6 @@ const StudentLMS = () => {
       case 'courses':
         return (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--border-light)' }}>
-             {/* 🎬 CINEMATIC PLAYER */}
              <div style={{ padding: '1.5rem 3rem', background: '#020617', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-light)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#EF4444', animation: 'pulse 1.5s infinite' }} />
@@ -125,7 +245,6 @@ const StudentLMS = () => {
                    </motion.div>
                 </div>
 
-                {/* HUD Overlay */}
                 <div style={{ position: 'absolute', top: '2rem', right: '2rem', textAlign: 'right' }}>
                    <p style={{ fontSize: '0.6rem', color: 'var(--primary)', fontWeight: 900, letterSpacing: '0.2em' }}>TELEMETRY STATUS</p>
                    <p style={{ fontSize: '1rem', fontWeight: 900, color: 'white' }}>SIGNAL: 100%</p>
@@ -140,7 +259,7 @@ const StudentLMS = () => {
                    </p>
                    <div style={{ display: 'flex', gap: '1rem' }}>
                       <button className="premium-btn" style={{ padding: '1rem 2rem' }}><FileText size={18} /> RESOURCE PACK</button>
-                      <button className="premium-btn-ghost" style={{ padding: '1rem 2rem' }}><FlaskConical size={18} /> OPEN LAB</button>
+                      <button onClick={() => setActiveTab('labs')} className="premium-btn-ghost" style={{ padding: '1rem 2rem' }}><FlaskConical size={18} /> OPEN LAB</button>
                    </div>
                 </div>
                 <div className="glass-card" style={{ padding: '2rem', background: 'rgba(255,255,255,0.02)' }}>
@@ -162,8 +281,80 @@ const StudentLMS = () => {
           </motion.div>
         );
 
+      case 'resources':
+        return (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="reveal">
+            <h2 style={{ fontSize: '1.75rem', fontWeight: 900, marginBottom: '2rem' }}>RESOURCE <span className="gradient-text">ARCHIVES</span></h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
+              {[
+                { title: 'Neural Architecture Fundamentals', type: 'PDF', size: '4.2 MB', icon: <FileText size={24} />, color: 'var(--primary)' },
+                { title: 'Transformer Models - Deep Dive', type: 'PDF', size: '8.1 MB', icon: <FileText size={24} />, color: 'var(--secondary)' },
+                { title: 'Lab Environment Setup Guide', type: 'PDF', size: '2.3 MB', icon: <FileText size={24} />, color: '#10B981' },
+                { title: 'Lecture 01 - Neural Foundations', type: 'VIDEO', size: '1.2 GB', icon: <PlayCircle size={24} />, color: '#F59E0B' },
+                { title: 'Lecture 02 - Backpropagation', type: 'VIDEO', size: '980 MB', icon: <PlayCircle size={24} />, color: '#F59E0B' },
+                { title: 'Assignment 01 - Gradient Descent', type: 'TASK', size: 'Due May 30', icon: <ClipboardList size={24} />, color: '#EF4444' },
+              ].map((res, i) => (
+                <motion.div key={i} whileHover={{ scale: 1.02 }} className="glass-card hover-glow" style={{ padding: '2rem', cursor: 'pointer', border: '1px solid var(--border-light)' }}>
+                  <div style={{ color: res.color, marginBottom: '1rem', width: '45px', height: '45px', background: `${res.color}15`, borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{res.icon}</div>
+                  <h4 style={{ fontWeight: 800, marginBottom: '0.5rem', fontSize: '1rem' }}>{res.title}</h4>
+                  <div style={{ display: 'flex', gap: '1rem', fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 800 }}>
+                    <span style={{ background: 'rgba(255,255,255,0.06)', padding: '0.25rem 0.75rem', borderRadius: '99px' }}>{res.type}</span>
+                    <span>{res.size}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case 'labs':
+        return (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="reveal">
+            <h2 style={{ fontSize: '1.75rem', fontWeight: 900, marginBottom: '2rem' }}>RESEARCH <span className="gradient-text">LABS</span></h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2rem' }}>
+              {[
+                { title: 'Neural Sandbox Alpha', status: 'AVAILABLE', color: '#22c55e', desc: 'Interactive neural network playground with live visualization and parameter tuning.' },
+                { title: 'Full-Stack Container', status: 'AVAILABLE', color: '#22c55e', desc: 'Pre-configured Docker environment for web architecture and API development labs.' },
+                { title: 'Quantum Crypto Lab', status: 'MAINTENANCE', color: '#F59E0B', desc: 'Advanced quantum cryptography simulation environment. Back online June 1.' },
+              ].map((lab, i) => (
+                <motion.div key={i} whileHover={{ y: -5 }} className="glass-card" style={{ padding: '2.5rem', border: '1px solid var(--border-light)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                    <FlaskConical size={32} color="var(--primary)" />
+                    <span style={{ fontSize: '0.65rem', fontWeight: 900, color: lab.color, background: `${lab.color}15`, padding: '0.4rem 1rem', borderRadius: '99px', border: `1px solid ${lab.color}30` }}>{lab.status}</span>
+                  </div>
+                  <h3 style={{ fontWeight: 900, marginBottom: '0.75rem', fontSize: '1.2rem' }}>{lab.title}</h3>
+                  <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>{lab.desc}</p>
+                  <button 
+                    className="premium-btn" 
+                    style={{ width: '100%', justifyContent: 'center', padding: '0.8rem', opacity: lab.status === 'MAINTENANCE' ? 0.5 : 1 }} 
+                    disabled={lab.status === 'MAINTENANCE'}
+                  >
+                    {lab.status === 'AVAILABLE' ? <><Rocket size={16} /> LAUNCH LAB</> : 'UNDER MAINTENANCE'}
+                  </button>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case 'ai':
+        return (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ height: '70vh', display: 'flex', flexDirection: 'column' }} className="glass-card">
+            <div style={{ padding: '2rem', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ width: '45px', height: '45px', background: 'var(--primary-glow)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Brain size={24} color="var(--primary)" />
+              </div>
+              <div>
+                <h3 style={{ fontWeight: 900 }}>FAST <span className="gradient-text">NEURAL AI</span></h3>
+                <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 700 }}>Powered by Gemini 1.5 Flash • Institutional Intelligence</p>
+              </div>
+            </div>
+            <NeuralAIChat />
+          </motion.div>
+        );
+
       default:
-        return <div style={{ height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-dim)', fontWeight: 800 }}>TERMINAL ACCESS GRANTED. SELECT MODULE.</div>;
+        return <div style={{ height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-dim)', fontWeight: 800 }}>SELECT A MODULE FROM THE SIDEBAR.</div>;
     }
   };
 
@@ -171,7 +362,7 @@ const StudentLMS = () => {
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-deep)', color: 'white' }}>
       <div className="mesh-grid" style={{ opacity: 0.2 }} />
       
-      {/* 🚀 CYBER SIDEBAR */}
+      {/* SIDEBAR */}
       <motion.aside 
         animate={{ width: isSidebarOpen ? '280px' : '90px' }}
         style={{ 
@@ -222,12 +413,12 @@ const StudentLMS = () => {
              }}
            >
               <LogOut size={22} />
-              {isSidebarOpen && <span>ABORT</span>}
+              {isSidebarOpen && <span>BACK TO PORTAL</span>}
            </button>
         </div>
       </motion.aside>
 
-      {/* 🖥️ MAIN WORKSTATION */}
+      {/* MAIN WORKSTATION */}
       <main style={{ flex: 1, padding: '5rem', overflowY: 'auto', zIndex: 10 }}>
          <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5rem' }}>
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
@@ -240,16 +431,16 @@ const StudentLMS = () => {
                    <Search size={18} color="var(--primary)" />
                    <input type="text" placeholder="QUERY SYSTEM..." style={{ background: 'transparent', border: 'none', outline: 'none', color: 'white', fontWeight: 800, fontSize: '0.8rem' }} />
                 </div>
-                <div style={{ width: '50px', height: '50px', borderRadius: '15px', border: '1px solid var(--primary-glow)', background: 'var(--primary-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <button onClick={() => setActiveTab('ai')} style={{ width: '50px', height: '50px', borderRadius: '15px', border: '1px solid var(--primary-glow)', background: 'var(--primary-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
                    <Sparkles size={20} color="var(--primary)" />
-                </div>
+                </button>
             </div>
          </header>
 
          {renderContent()}
       </main>
 
-      {/* 🗨️ INSTITUTIONAL CHAT OVERLAY (WHATSAPP STYLE) */}
+      {/* INSTITUTIONAL CHAT OVERLAY */}
       <AnimatePresence>
         {chatOpen && (
           <motion.div 
@@ -262,7 +453,6 @@ const StudentLMS = () => {
               display: 'flex', flexDirection: 'column'
             }}
           >
-             {/* Chat Header */}
              <div style={{ padding: '2rem', background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                    <div style={{ width: '45px', height: '45px', borderRadius: '12px', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -270,47 +460,52 @@ const StudentLMS = () => {
                    </div>
                    <div>
                       <h4 style={{ fontWeight: 900, letterSpacing: '0.05em' }}>SYNC CHAT</h4>
-                      <p style={{ fontSize: '0.65rem', color: 'var(--primary)', fontWeight: 900 }}>34 SCHOLARS ONLINE</p>
+                      <p style={{ fontSize: '0.65rem', color: 'var(--primary)', fontWeight: 900 }}>LMS GLOBAL CHANNEL</p>
                    </div>
                 </div>
                 <button onClick={() => setChatOpen(false)} style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: 'var(--text-dim)' }}><X size={24} /></button>
              </div>
 
-             {/* Messages */}
              <div style={{ flex: 1, padding: '2rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                {[
-                  { sender: 'System', text: 'Institutional sync established. Welcome to the global chat.', type: 'system' },
-                  { sender: 'Scholar-492', text: 'Has anyone finished the Neural Foundations lab yet?', type: 'other' },
-                  { sender: 'Scholar-881', text: 'Yes! The self-attention derivation is tricky though.', type: 'other' },
-                  { sender: 'You', text: 'I just uploaded my notes to the resource pack.', type: 'self' },
-                ].map((msg, i) => (
-                  <div key={i} style={{ 
-                    alignSelf: msg.type === 'self' ? 'flex-end' : (msg.type === 'system' ? 'center' : 'flex-start'),
-                    maxWidth: '80%', padding: '1rem 1.5rem', borderRadius: '18px',
-                    background: msg.type === 'self' ? 'var(--primary)' : (msg.type === 'system' ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.03)'),
-                    color: msg.type === 'self' ? 'white' : 'var(--text-main)',
-                    fontSize: msg.type === 'system' ? '0.7rem' : '0.9rem',
-                    fontWeight: 600, border: '1px solid var(--border-light)'
-                  }}>
-                    {msg.type !== 'self' && msg.type !== 'system' && <p style={{ fontSize: '0.65rem', fontWeight: 900, color: 'var(--primary)', marginBottom: '0.25rem' }}>{msg.sender}</p>}
-                    {msg.text}
-                  </div>
-                ))}
+               {lmsMessages.length === 0 && (
+                 <div style={{ textAlign: 'center', opacity: 0.4, marginTop: '4rem' }}>
+                   <MessageSquare size={48} style={{ marginBottom: '1rem' }} />
+                   <p style={{ fontWeight: 800, fontSize: '0.8rem', letterSpacing: '0.1em' }}>NO MESSAGES YET</p>
+                 </div>
+               )}
+               {lmsMessages.map((m, i) => {
+                 const isMe = m.senderId === user?.id;
+                 return (
+                   <div key={i} style={{ 
+                     alignSelf: isMe ? 'flex-end' : 'flex-start',
+                     maxWidth: '80%', padding: '1rem 1.5rem', borderRadius: '18px',
+                     background: isMe ? 'var(--primary)' : 'rgba(255,255,255,0.04)',
+                     color: isMe ? 'white' : 'var(--text-main)',
+                     fontSize: '0.9rem', fontWeight: 600, border: '1px solid var(--border-light)'
+                   }}>
+                     {!isMe && <p style={{ fontSize: '0.65rem', fontWeight: 900, color: 'var(--primary)', marginBottom: '0.4rem' }}>{m.senderName}</p>}
+                     <p>{m.text}</p>
+                     <p style={{ fontSize: '0.6rem', opacity: 0.6, textAlign: 'right', marginTop: '0.4rem' }}>
+                       {new Date(m.timestamp || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                     </p>
+                   </div>
+                 );
+               })}
+               <div ref={chatScrollRef} />
              </div>
 
-             {/* Input Area */}
-             <div style={{ padding: '2rem', background: 'rgba(0,0,0,0.2)', borderTop: '1px solid var(--border-light)' }}>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                   <Smile size={22} color="var(--text-dim)" cursor="pointer" />
-                   <Paperclip size={22} color="var(--text-dim)" cursor="pointer" />
-                   <div style={{ flex: 1, background: 'rgba(255,255,255,0.05)', borderRadius: '15px', padding: '0.75rem 1.5rem', border: '1px solid var(--border-light)' }}>
-                      <input type="text" placeholder="Message academic network..." style={{ width: '100%', background: 'transparent', border: 'none', outline: 'none', color: 'white', fontWeight: 600 }} />
-                   </div>
-                   <div style={{ width: '50px', height: '50px', borderRadius: '15px', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 0 20px var(--primary-glow)' }}>
-                      <Send size={20} color="white" />
-                   </div>
-                </div>
-             </div>
+             <form onSubmit={sendLmsMessage} style={{ padding: '2rem', borderTop: '1px solid var(--border-light)' }}>
+               <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                  <input 
+                    type="text" placeholder="TRANSMIT MESSAGE..." 
+                    value={lmsMsg} onChange={(e) => setLmsMsg(e.target.value)}
+                    style={{ flex: 1, padding: '1.25rem 1.5rem', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border-light)', borderRadius: '14px', outline: 'none', color: 'white', fontWeight: 600, fontSize: '0.95rem' }}
+                  />
+                  <button type="submit" className="premium-btn" style={{ width: '55px', height: '55px', borderRadius: '14px', justifyContent: 'center', padding: 0 }}>
+                     <Send size={22} />
+                  </button>
+               </div>
+            </form>
           </motion.div>
         )}
       </AnimatePresence>

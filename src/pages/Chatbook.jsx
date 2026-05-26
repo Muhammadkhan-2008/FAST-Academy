@@ -9,6 +9,7 @@ import {
 import { useUser } from '@clerk/clerk-react';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../utils/api';
 
 const Chatbook = () => {
   const { user } = useUser();
@@ -36,7 +37,7 @@ const Chatbook = () => {
 
   const fetchMessages = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/chat/${encodeURIComponent(activeChannel)}`);
+      const res = await fetch(`${API_URL}/api/chat/${encodeURIComponent(activeChannel)}`);
       const data = await res.json();
       setMessages(Array.isArray(data) ? data : []);
     } catch (err) { console.error('Sync failure:', err); }
@@ -52,7 +53,7 @@ const Chatbook = () => {
       channel: activeChannel 
     };
     try {
-      const res = await fetch('http://localhost:5000/api/chat', {
+      const res = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(msgData)
@@ -129,7 +130,7 @@ const Chatbook = () => {
                   </div>
                </div>
                <div style={{ display: 'flex', gap: '1.5rem' }}>
-                  <button className="premium-btn-ghost" style={{ padding: '0.6rem 1.2rem' }}><Video size={18} /> INITIATE CALL</button>
+                  <button onClick={() => window.open(`https://meet.jit.si/FAST_${activeChannel.replace(/\s+/g,'_')}#config.prejoinPageEnabled=false`, '_blank')} className="premium-btn-ghost" style={{ padding: '0.6rem 1.2rem' }}><Video size={18} /> LIVE CALL</button>
                   <MoreVertical size={22} color="var(--text-dim)" cursor="pointer" />
                </div>
             </header>

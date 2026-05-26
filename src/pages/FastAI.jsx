@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, Cpu, MessageSquare, Sparkles, Send, Zap, Shield, ChevronRight, Terminal, Globe, Command } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import { API_URL } from '../utils/api';
 
 const FastAI = () => {
   const [messages, setMessages] = useState([
@@ -26,7 +27,7 @@ const FastAI = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/fast-ai/query', {
+      const res = await fetch(`${API_URL}/api/fast-ai/query`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: input, mode })

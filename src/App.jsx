@@ -54,6 +54,7 @@ import StudentClassroom from './pages/student/StudentClassroom';
 // Shared
 import Classroom from './pages/shared/Classroom';
 import ComingSoon from './pages/shared/ComingSoon';
+import LiveClasses from './pages/student/LiveClasses';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { isLoaded, isSignedIn } = useUser();
@@ -182,7 +183,7 @@ function App() {
             <Route path="classroom" element={<StudentClassroom />} />
             
             {/* New Sections Placeholders */}
-            <Route path="live" element={<ComingSoon title="Live Lectures & Classes" />} />
+            <Route path="live" element={<LiveClasses />} />
             <Route path="recordings" element={<ComingSoon title="Lecture Recordings" />} />
             <Route path="ebooks" element={<ComingSoon title="E-Books Access" />} />
             <Route path="support" element={<ComingSoon title="Chat Support" />} />
