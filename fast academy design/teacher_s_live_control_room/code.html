@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAST Live Control Room</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Sora:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#1c2b3e",
+                        "secondary": "#bec6e0",
+                        "secondary-container": "#3f465c",
+                        "tertiary-fixed": "#acf847",
+                        "surface": "#051426",
+                        "on-surface-variant": "#c2c6d6",
+                        "inverse-surface": "#d5e3fd",
+                        "on-secondary-container": "#adb4ce",
+                        "inverse-primary": "#005ac2",
+                        "primary": "#adc6ff",
+                        "tertiary": "#91db2a",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "primary-fixed-dim": "#adc6ff",
+                        "outline": "#8c909f",
+                        "tertiary-container": "#65a100",
+                        "surface-bright": "#2c3a4e",
+                        "surface-variant": "#273649",
+                        "background": "#051426",
+                        "on-background": "#d5e3fd",
+                        "on-error": "#690005",
+                        "primary-fixed": "#d8e2ff",
+                        "on-tertiary": "#1f3700",
+                        "on-tertiary-container": "#1a2f00",
+                        "on-tertiary-fixed": "#102000",
+                        "primary-container": "#4d8eff",
+                        "inverse-on-surface": "#233144",
+                        "surface-container-low": "#0d1c2f",
+                        "on-surface": "#d5e3fd",
+                        "secondary-fixed": "#dae2fd",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed-dim": "#91db2a",
+                        "surface-container": "#122033",
+                        "outline-variant": "#424754",
+                        "surface-dim": "#051426",
+                        "on-tertiary-fixed-variant": "#304f00",
+                        "on-primary-container": "#00285d",
+                        "surface-tint": "#adc6ff",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#010f21",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-highest": "#273649",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-secondary": "#283044",
+                        "error-container": "#93000a",
+                        "on-primary": "#002e6a",
+                        "on-secondary-fixed": "#131b2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "container-max": "1440px",
+                        "margin": "32px",
+                        "gutter": "24px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Sora"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Sora"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Sora"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(51, 65, 85, 0.4); /* Slate Gray with 40% opacity approximated via Tailwind mostly, but custom class for ease */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(190, 198, 224, 0.2); /* secondary/20 */
+        }
+        .tech-border-glow {
+            border: 1px solid rgba(173, 198, 255, 0.2); /* electric blue / primary */
+            box-shadow: inset 0 0 15px rgba(173, 198, 255, 0.05);
+        }
+        .tech-border-glow:hover {
+            border-color: rgba(173, 198, 255, 0.6);
+            box-shadow: 0 0 15px rgba(173, 198, 255, 0.15), inset 0 0 15px rgba(173, 198, 255, 0.1);
+        }
+        .live-status {
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(172, 248, 71, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(172, 248, 71, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(172, 248, 71, 0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen w-screen overflow-hidden flex antialiased">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 border-r border-secondary/20 bg-surface/40 backdrop-blur-xl flex flex-col z-40">
+<div class="p-margin border-b border-secondary/20 shrink-0">
+<div class="flex items-center gap-stack-md">
+<img alt="Academic profile image" class="w-12 h-12 rounded-DEFAULT object-cover border border-secondary/30" data-alt="A macro shot of a sleek, high-tech metallic ID badge featuring a geometric crest. The badge rests on a dark obsidian surface with faint, glowing grid lines. A sharp beam of electric blue light cuts across the metallic surface, emphasizing its precision engineering and corporate modernism aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVi1DUv_Bi46BmjiqdacBKQg49mTOZKu4KXxB7i-mbYqDfoPetJffNw-XDxjVCjioXsxvhczSKQIoz8ak_WJjhbeSLOpG-RoNY6XgdVbrT3LgPVZpKetXINdWJ8PeOirZBFBSK9SPQ_ZNBQz6RENjUAv9LlEI50NRuVHVCXkqApU-Z-Hr66-1PTGMiJ6vAjFNfieELS4h9-JPkSQb9i6lHP0Bg26ua61uUaAcBj1EGhEeQAzvdZtjc84QVkAzPngPeo40NGEjVY1l1"/>
+<div>
+<h1 class="font-display-lg text-[18px] tracking-tighter text-on-surface font-bold leading-tight">FAST Institute</h1>
+<p class="font-label-mono text-[10px] text-tertiary-fixed uppercase">Precision Modernism</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-stack-md flex flex-col gap-stack-sm px-stack-md">
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<!-- Active: Classroom -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-tertiary-fixed font-bold border-r-2 border-tertiary-fixed bg-tertiary-container/10 scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="school" data-weight="fill" style="font-variation-settings: 'FILL' 1;">school</span>
+                Classroom
+            </a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+                Workspace
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+                Labs
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                Scholarships
+            </a>
+</nav>
+<div class="p-stack-md shrink-0">
+<button class="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-surface-bright border border-primary/30 text-primary font-label-mono text-label-mono hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined" data-icon="memory">memory</span>
+                System Scan
+            </button>
+</div>
+<div class="border-t border-secondary/20 p-stack-md flex flex-col gap-stack-sm shrink-0">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help_center">help_center</span>
+                Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col h-full relative">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin h-20 sticky top-0 z-30 bg-surface/40 backdrop-blur-md border-b border-secondary/20 shrink-0">
+<div class="flex items-center gap-margin">
+<div class="font-display-lg text-headline-md font-bold text-primary">FAST</div>
+<nav class="hidden md:flex items-center gap-stack-md">
+<a class="text-on-surface-variant hover:text-primary hover:bg-white/5 px-3 py-2 rounded-DEFAULT transition-colors font-label-mono text-label-mono" href="#">Research</a>
+<a class="text-on-surface-variant hover:text-primary hover:bg-white/5 px-3 py-2 rounded-DEFAULT transition-colors font-label-mono text-label-mono" href="#">Faculty</a>
+<a class="text-on-surface-variant hover:text-primary hover:bg-white/5 px-3 py-2 rounded-DEFAULT transition-colors font-label-mono text-label-mono" href="#">Archives</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="relative">
+<input class="bg-transparent border-b border-secondary/50 focus:border-primary text-on-surface font-label-mono text-label-mono py-1 px-2 w-48 transition-colors outline-none focus:ring-0 placeholder:text-outline-variant" placeholder="QUERY..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</button>
+<img alt="User experimentalist avatar" class="w-10 h-10 rounded-DEFAULT border border-primary/50 object-cover ml-2" data-alt="A portrait of a futuristic researcher looking thoughtfully off-camera. The subject is illuminated by glowing cyber lime and electric blue reflections from unseen lab monitors. They wear a sleek, dark slate gray lab coat. The background is a deeply blurred, high-tech control room bathed in shadows and neon accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIM_q6BqFLvkWrHDJiDaxjGIJ0AWvsGrEDFB06q6dK09bRnNmpVTcR1-Zm_ehlaDCZvOLSE7xKx3ZEIR0aB3fjEEoV0fS6yVfbshUymBg0mkwrxf_Op_K_VjAZCEkAew8ukCb9BJNzFDx6XJw0939igAn72Ob26PoYJMKG-4Bmc6cDuc0bTLQVcwvSJshZOIgq8g1q7gZNZreVhp7cCxelURWDdDELSYIzka_6cZxiuDm0oQFD5VmZnSKxxuLjztJ-BTbPvJdjiDi9"/>
+</div>
+</header>
+<!-- Live Control Room Grid -->
+<div class="flex-1 overflow-y-auto p-margin">
+<div class="max-w-container-max mx-auto grid grid-cols-12 gap-gutter pb-32">
+<!-- Center Stage: Stream Preview & Whiteboard -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-stack-lg">
+<!-- Stream Container -->
+<div class="bg-[#020617] rounded-xl border-t-2 border-tertiary-fixed overflow-hidden relative tech-border-glow shadow-lg flex flex-col">
+<!-- Stream Header -->
+<div class="px-stack-md py-stack-sm border-b border-outline-variant/30 flex justify-between items-center bg-surface-container-low/50">
+<div class="flex items-center gap-3">
+<span class="bg-tertiary-fixed/10 text-tertiary-fixed font-label-mono text-[10px] px-2 py-1 rounded-DEFAULT border border-tertiary-fixed/20 live-status flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></span> LIVE: NEURAL NETWORKS 101
+                                </span>
+<span class="font-label-mono text-label-mono text-outline">01:24:15</span>
+</div>
+<div class="flex items-center gap-4 text-secondary">
+<div class="flex items-center gap-1 font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-[16px]" data-icon="visibility">visibility</span> 2,408
+                                </div>
+<div class="flex items-center gap-1 font-label-mono text-label-mono text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="speed">speed</span> 12ms
+                                </div>
+</div>
+</div>
+<!-- Video Area -->
+<div class="relative aspect-video w-full bg-surface-container-highest group">
+<img alt="Live Stream View" class="w-full h-full object-cover opacity-80 mix-blend-screen" data-alt="A high-tech digital classroom stream preview. The frame shows a brilliant neon-lit experimental chemistry lab viewed through a wide-angle lens. Futuristic glass distillation columns glow with electric blue and cyber lime liquids against a deep obsidian background. The lighting is dramatic, high-contrast, and deeply cinematic, emphasizing the precision modernism and advanced corporate institutional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvVgmNENwq8iOXQbM5Rn_qzjy0e2uzxOQ3Kf26og1N1GyfSl5xt3ZydQyv7IkwcMt-ZnR8nRxPI2N-so0BYSOvnLd2LfVc2wPAESIEB8_dPUMScmegQmWLZDFJhjtYNkatddThZ17LymunAlQcbKcAT6KrsJM5iaqCkXAtbcsEQRZ_0wUp7t7nQEb_ec-VApYxkmcbXuN4s82yvUGOguWHGsujZkPhckwxK0GhZRPPMdbdqE3Nuy-YsOiXgWtIywn6lZLaiVm7JYt8"/>
+<!-- Overlays -->
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none"></div>
+<!-- In-Stream Controls -->
+<div class="absolute bottom-stack-md left-1/2 -translate-x-1/2 flex items-center gap-stack-md bg-surface/80 backdrop-blur-md px-stack-md py-2 rounded-full border border-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="videocam">videocam</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="screen_share">screen_share</span>
+</button>
+<div class="w-px h-6 bg-outline-variant mx-2"></div>
+<button class="w-10 h-10 rounded-full bg-error-container text-on-error-container flex items-center justify-center hover:bg-error hover:text-on-error transition-colors">
+<span class="material-symbols-outlined" data-icon="call_end">call_end</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Whiteboard Mini-Controls Bento -->
+<div class="glass-panel rounded-xl p-stack-md flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="draw">draw</span>
+<div>
+<h3 class="font-headline-md text-[18px] text-on-surface">Interactive Whiteboard</h3>
+<p class="font-label-mono text-[12px] text-on-surface-variant">Active Source: Tablet Input</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-surface-bright text-primary border border-primary/30 hover:bg-primary hover:text-on-primary transition-colors tech-border-glow">
+<span class="material-symbols-outlined" data-icon="ink_pen">ink_pen</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-bright text-on-surface-variant border border-secondary/20 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="format_shapes">format_shapes</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-bright text-on-surface-variant border border-secondary/20 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="ink_eraser">ink_eraser</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-bright text-on-surface-variant border border-secondary/20 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="text_fields">text_fields</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Side: Controls & Attendees -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-stack-lg">
+<!-- Recording Controls -->
+<div class="glass-panel rounded-xl p-stack-md flex flex-col gap-stack-md">
+<h3 class="font-label-mono text-label-mono text-tertiary-fixed flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="settings_b_roll">settings_b_roll</span>
+                            SESSION CAPTURE
+                        </h3>
+<button class="w-full bg-error text-on-error py-3 rounded-lg font-display-lg text-[16px] font-bold tracking-tight hover:bg-error-container hover:text-on-error-container transition-all flex justify-center items-center gap-2 shadow-[0_0_15px_rgba(255,180,171,0.2)]">
+<span class="material-symbols-outlined" data-icon="radio_button_checked" data-weight="fill">radio_button_checked</span>
+                            Start Recording
+                        </button>
+<button class="w-full bg-transparent border border-primary/40 text-primary py-3 rounded-lg font-body-md hover:bg-primary/10 transition-colors flex justify-center items-center gap-2">
+<span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+                            Save to Recorded Lectures
+                        </button>
+<div class="grid grid-cols-2 gap-2 mt-2">
+<div class="bg-surface-container-low p-2 rounded-DEFAULT border border-secondary/10 flex flex-col">
+<span class="font-label-mono text-[10px] text-outline">STORAGE</span>
+<span class="font-label-mono text-[14px] text-on-surface">45% USED</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-DEFAULT border border-secondary/10 flex flex-col">
+<span class="font-label-mono text-[10px] text-outline">RESOLUTION</span>
+<span class="font-label-mono text-[14px] text-on-surface">4K RAW</span>
+</div>
+</div>
+</div>
+<!-- Attendees List -->
+<div class="glass-panel rounded-xl flex flex-col flex-1 max-h-[500px]">
+<div class="p-stack-md border-b border-secondary/20 flex justify-between items-center bg-surface/50 rounded-t-xl">
+<div>
+<h3 class="font-headline-md text-[18px] text-on-surface">Attendees</h3>
+<p class="font-label-mono text-[12px] text-on-surface-variant">64 Connected</p>
+</div>
+<button class="text-[12px] font-label-mono bg-surface-bright border border-secondary/30 px-3 py-1.5 rounded-DEFAULT text-on-surface hover:text-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="mic_off">mic_off</span>
+                                Mute All
+                            </button>
+</div>
+<div class="flex-1 overflow-y-auto p-2 flex flex-col gap-1">
+<!-- Attendee Item -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-secondary-container flex items-center justify-center text-on-secondary-container font-label-mono text-[12px]">JD</div>
+<span class="font-body-md text-[14px] text-on-surface">Jane Doe (Guest)</span>
+</div>
+<div class="flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="text-tertiary-fixed hover:text-error transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="mic">mic</span></button>
+<button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="videocam">videocam</span></button>
+</div>
+</div>
+<!-- Attendee Item Muted -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-secondary-container flex items-center justify-center text-on-secondary-container font-label-mono text-[12px]">AX</div>
+<span class="font-body-md text-[14px] text-on-surface">Alex Xavier</span>
+</div>
+<div class="flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="text-error hover:text-tertiary-fixed transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="mic_off">mic_off</span></button>
+<button class="text-error hover:text-primary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="videocam_off">videocam_off</span></button>
+</div>
+</div>
+<!-- Attendee Item Muted -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-DEFAULT bg-secondary-container flex items-center justify-center text-on-secondary-container font-label-mono text-[12px]">KL</div>
+<span class="font-body-md text-[14px] text-on-surface">Kaelen Lin</span>
+</div>
+<div class="flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="text-error hover:text-tertiary-fixed transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="mic_off">mic_off</span></button>
+<button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="videocam">videocam</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Chatbook Widget -->
+<div class="fixed bottom-margin right-margin w-80 bg-surface-container-high rounded-t-xl rounded-bl-xl border border-secondary/20 shadow-2xl flex flex-col z-50 overflow-hidden transform transition-transform origin-bottom-right tech-border-glow">
+<!-- Chat Header -->
+<div class="bg-surface-bright p-3 border-b border-secondary/20 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="forum">forum</span>
+<span class="font-display-lg text-[14px] font-bold text-on-surface">Chatbook Live</span>
+<span class="bg-primary/20 text-primary font-label-mono text-[10px] px-1.5 py-0.5 rounded-DEFAULT">3</span>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<!-- Chat Messages -->
+<div class="h-64 overflow-y-auto p-4 flex flex-col gap-3 bg-[#020617]/50">
+<!-- Incoming -->
+<div class="flex items-end gap-2 w-full">
+<div class="w-6 h-6 rounded-DEFAULT bg-secondary shrink-0"></div>
+<div class="bg-secondary-container text-on-secondary-container p-2 rounded-r-xl rounded-tl-xl font-body-md text-[13px] max-w-[85%]">
+                        Professor, can you re-explain the fractal equation in step 3?
+                    </div>
+</div>
+<!-- User (Teacher) -->
+<div class="flex items-end justify-end gap-2 w-full">
+<div class="bg-primary text-on-primary p-2 rounded-l-xl rounded-tr-xl font-body-md text-[13px] max-w-[85%]">
+                        Yes, I'll switch back to the whiteboard in a moment to clarify.
+                    </div>
+</div>
+<!-- Incoming -->
+<div class="flex items-end gap-2 w-full">
+<div class="w-6 h-6 rounded-DEFAULT bg-tertiary shrink-0"></div>
+<div class="bg-secondary-container text-on-secondary-container p-2 rounded-r-xl rounded-tl-xl font-body-md text-[13px] max-w-[85%]">
+                        Audio is a bit low for me, anyone else?
+                    </div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-2 bg-surface border-t border-secondary/20 flex items-center gap-2">
+<input class="flex-1 bg-transparent border-b border-secondary/50 focus:border-primary text-on-surface font-label-mono text-[12px] py-2 outline-none focus:ring-0 placeholder:text-outline-variant" placeholder="Transmit message..." type="text"/>
+<button class="text-primary hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAST Institute - Project Gallery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=JetBrains+Mono:wght@500&amp;family=Sora:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            font-feature-settings: 'liga';
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #051426; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273649; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #424754; 
+        }
+
+        .glass-card {
+            background: rgba(51, 65, 85, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(173, 198, 255, 0.2);
+        }
+        
+        .glowing-border:hover {
+            border-color: rgba(77, 142, 255, 0.6);
+            box-shadow: 0 0 15px rgba(77, 142, 255, 0.2);
+        }
+
+        .tech-accent {
+            border-top: 2px solid #91db2a;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#bec6e0",
+                        "inverse-on-surface": "#233144",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-container-lowest": "#010f21",
+                        "on-primary-container": "#00285d",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#91db2a",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-dim": "#051426",
+                        "background": "#051426",
+                        "surface-container-highest": "#273649",
+                        "on-tertiary-container": "#1a2f00",
+                        "on-surface": "#d5e3fd",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#1c2b3e",
+                        "on-secondary-container": "#adb4ce",
+                        "surface-container": "#122033",
+                        "on-secondary": "#283044",
+                        "surface-tint": "#adc6ff",
+                        "outline-variant": "#424754",
+                        "on-primary-fixed": "#001a42",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#91db2a",
+                        "primary": "#adc6ff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-background": "#d5e3fd",
+                        "surface-container-low": "#0d1c2f",
+                        "surface-bright": "#2c3a4e",
+                        "secondary-container": "#3f465c",
+                        "tertiary-fixed": "#acf847",
+                        "primary-container": "#4d8eff",
+                        "inverse-primary": "#005ac2",
+                        "outline": "#8c909f",
+                        "on-tertiary": "#1f3700",
+                        "tertiary-container": "#65a100",
+                        "surface": "#051426",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-tertiary-fixed": "#102000",
+                        "inverse-surface": "#d5e3fd",
+                        "on-primary": "#002e6a",
+                        "surface-variant": "#273649",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-tertiary-fixed-variant": "#304f00",
+                        "on-secondary-fixed": "#131b2e",
+                        "secondary-fixed": "#dae2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin": "32px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "display-lg": ["Sora"],
+                        "label-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col z-40 fixed left-0 top-0 h-screen w-64 border-r border-secondary/20 bg-surface/40 backdrop-blur-xl shrink-0">
+<div class="p-margin border-b border-secondary/20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary font-bold">biotech</span>
+</div>
+<div>
+<h1 class="font-display-lg text-headline-md tracking-tighter text-on-surface">FAST Institute</h1>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-xs mt-1">Precision Modernism</p>
+</div>
+</div>
+<button class="w-full mt-stack-lg py-3 px-4 bg-primary text-on-primary font-label-mono text-label-mono rounded hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">data_exploration</span>
+                System Scan
+            </button>
+</div>
+<div class="flex-1 overflow-y-auto py-stack-md px-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">school</span>
+                Classroom
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-tertiary-fixed font-bold border-r-2 border-tertiary-fixed bg-tertiary-container/10" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">terminal</span>
+                Workspace
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">biotech</span>
+                Labs
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">payments</span>
+                Scholarships
+            </a>
+</div>
+<div class="p-4 border-t border-secondary/20 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary hover:bg-surface-bright/50 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary hover:bg-surface-bright/50 transition-colors" href="#">
+<span class="material-symbols-outlined">help_center</span>
+                Support
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen overflow-x-hidden">
+<!-- TopAppBar (Mobile & Desktop overrides) -->
+<header class="flex justify-between items-center w-full px-margin h-20 sticky top-0 z-50 border-b border-secondary/20 bg-surface/40 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-headline-md font-bold text-primary md:hidden">FAST</span>
+<nav class="hidden md:flex gap-6 ml-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Research</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Faculty</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono" href="#">Archives</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5 hidden sm:block">
+<span class="material-symbols-outlined">terminal</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded bg-surface-variant overflow-hidden border border-secondary/30 ml-2">
+<img alt="User experimentalist avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUeQjGqkTBP2xa62Vcuz2b-vc0IXIs6c2DTfHr-4YOFNtoA6cDufSS_pUwdWHtUFjAkc3cmfzpwf5dQ_8LwOI5SNKMDgsCtXBYlralPUbtngFBzHw5uHScfVuce_QrcZM6mo1GzDRaEAczZuNiK4W5Ej5eNT2FIniXv9WS9VXOVSh9EPueP7ctgkXPash2u2kxg-epwX-Hg6HkWAmMoB3cguPL_rBFFWvkiVbERBvBE5mYR3-IxL7U62_fG0I8CBkfef84GvGU0Tjg"/>
+</div>
+</div>
+</header>
+<div class="flex-1 p-margin md:p-10 max-w-container-max mx-auto w-full">
+<!-- Featured Research Hero -->
+<section class="mb-stack-lg relative rounded-xl overflow-hidden glass-card glowing-border transition-all duration-500 min-h-[400px] flex items-end p-margin group">
+<!-- Abstract Background -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10"></div>
+<div class="w-full h-full bg-cover bg-center opacity-40 transition-transform duration-700 group-hover:scale-105" data-alt="A highly detailed generative artwork showing complex neural network nodes connecting in a 3D space. The visual style is cybernetic and futuristic, rendered in deep navy and vibrant electric blue, with glowing data streams illuminating the dark environment. The mood is high-tech, intellectual, and experimental, aligning with a precision modernism aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5BlCVuHxeg8gNOmml1HHvQLGiuNzXUMp7ZQ8tZK1cmP4U9rJJiOej5sGRjm6xBh5UKbZ2AXOw6SWrLU7vZlzzDyYvKyUGjtfGrE2h07xPaohcPODstfRM4XW2P9U92zHZV0FkUOBMatgxA4rXO9UZ9RXk8N3b0jrMDzHU4uudkhhdidel6wa6-B5UDoQ0m5x5hbyC-mw-57r_OMQSnHaNlA63LRrtnTRotiaFvEjTsVRff6Ttr5OZNMYw8ccKnPHccPUe7gz5eQUW');">
+</div>
+</div>
+<div class="relative z-20 w-full max-w-3xl">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary font-label-mono text-[12px] rounded border border-tertiary/20 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                            FEATURED RESEARCH
+                        </span>
+<span class="font-label-mono text-label-mono text-on-surface-variant">NODE: OMEGA-7</span>
+</div>
+<h2 class="font-display-lg text-[32px] md:text-display-lg mb-4 text-on-surface">Cognitive Threat Detection via Unsupervised GANs</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6 max-w-2xl">A novel approach to identifying zero-day exploits using generative adversarial networks trained on global network topology rather than signature databases.</p>
+<div class="flex flex-wrap items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-variant overflow-hidden border border-secondary/30">
+<img alt="Researcher portrait" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALCve3h1lEIY48wrljUWyhiwgo0-CRjO_liP7ANnfBrR_39bK7C7SlfkDZM9Iu1xVcdOEyK7ROSh38m10TAp7zFXSalM1T_dUqq0o6byO1RMdx-Jwqx8VT6E3-b2DNmATcwWSsgZhSsZ3PucL2i-4bKziTxB_TT1qmZJI5DHWizgNx_QqPMNMMXIPpuTd4tlwbcFJZfQQgAURA3rRjY9zur5RNl2taUF9LyzvW0x3S6z09MxyzrMdzKCKq0xn2rfBgNRP5R73844N2"/>
+</div>
+<div>
+<div class="font-label-mono text-label-mono text-primary">Dr. Elena Chen</div>
+<div class="font-body-md text-[12px] text-on-surface-variant">Lead Researcher, Cyber Sec Lab</div>
+</div>
+</div>
+<button class="ml-auto px-6 py-3 bg-primary/10 border border-primary text-primary font-label-mono text-label-mono rounded hover:bg-primary hover:text-on-primary transition-all duration-300 flex items-center gap-2 backdrop-blur-sm">
+                            View Protocol
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Search & Filter Bar -->
+<section class="mb-stack-lg flex flex-col md:flex-row gap-4 items-center justify-between">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-transparent border-b border-outline-variant focus:border-primary text-on-surface font-label-mono text-label-mono py-3 pl-10 pr-4 placeholder:text-outline-variant focus:ring-0 transition-colors" placeholder="Search projects, tags, or protocols..." type="text"/>
+</div>
+<div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
+<button class="px-4 py-2 rounded border border-primary bg-primary/10 text-primary font-label-mono text-[12px] whitespace-nowrap">All Nodes</button>
+<button class="px-4 py-2 rounded border border-outline-variant text-on-surface-variant hover:border-secondary font-label-mono text-[12px] whitespace-nowrap transition-colors">Computer Vision</button>
+<button class="px-4 py-2 rounded border border-outline-variant text-on-surface-variant hover:border-secondary font-label-mono text-[12px] whitespace-nowrap transition-colors">Ethical Hacking</button>
+<button class="px-4 py-2 rounded border border-outline-variant text-on-surface-variant hover:border-secondary font-label-mono text-[12px] whitespace-nowrap transition-colors">Neural Nets</button>
+<button class="px-4 py-2 rounded border border-outline-variant text-on-surface-variant hover:border-secondary font-label-mono text-[12px] whitespace-nowrap transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">filter_list</span> Filters
+                    </button>
+</div>
+</section>
+<!-- Project Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Project Card 1 -->
+<article class="glass-card rounded-lg overflow-hidden glowing-border transition-all duration-300 flex flex-col group cursor-pointer">
+<div class="h-48 bg-surface-variant relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500" data-alt="A close up of lines of complex computer code displayed on a dark glowing monitor screen. The text is sharp and green against a deep black background, suggesting hacking or intense software development. The lighting is low and moody, evoking a serious cyber-security environment consistent with a precision tech aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuApk52tLUS5PFi1lMuoiHvD6vmkz-nexGurhJqch4wl4ltYKDoLSQiVAiuUg_SXAz-unT0cQwosDmO9ZNskT4YsU9b3Y0vEUeN1HkfO1_yUAlJB7qANZZVdgCKw5YHdfkbjou62kXd4LxY51DFc0JjSfcRmhbJn4Whz1d4bo6Gpf8nl09VdFsOOYeih1sRmXSgpoQGcH2PuWp3duaS2wHv8YRmnruxZBBW97xvNA9nMNPDXvfiPn1sI8yD3-KeGx-6-uVPCx43c6rFX');"></div>
+<div class="absolute top-3 right-3 px-2 py-1 bg-surface-container-highest/80 backdrop-blur border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">
+                            SYS_ID: 8492
+                        </div>
+</div>
+<div class="p-5 flex-1 flex flex-col tech-accent bg-[#020617]">
+<div class="flex gap-2 mb-3">
+<span class="text-[10px] font-label-mono px-2 py-1 rounded bg-secondary-container/30 text-secondary-fixed">Ethical Hacking</span>
+<span class="text-[10px] font-label-mono px-2 py-1 rounded bg-secondary-container/30 text-secondary-fixed">Rust</span>
+</div>
+<h3 class="font-headline-lg text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Vulnerability Scanner Delta</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-1 line-clamp-2">Automated penetration testing framework utilizing lightweight agents deployed across segmented network environments.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/30 pt-4 mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-surface-variant overflow-hidden">
+<img alt="Student avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIj9OL85K_WHu47CUHZ1-orPJIreiiiZ-T0SdXNK_NRHVNvAX5djHnVGklGWq_FzjeqSv2kZ8OGNF6druml4VuqinpECIlXd5jka8jDHJnyMtPqEPYTskMYWTE9Bxhc3zleUr-su-YIidsAWsrowLQRDYUZkAvfi5TmwNyEBATH-uw4nqGk8bLqqirE-Ft-NJkCGmbW7MaFRLThujOe8aOzA1RA9f_Z8AYJDl4va_bT5Mh8g_JQ5HKqqzUM3-3Y3tsgJfO7uVHE-D5"/>
+</div>
+<span class="font-label-mono text-[12px] text-on-surface">J. Vance</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+</div>
+</article>
+<!-- Project Card 2 -->
+<article class="glass-card rounded-lg overflow-hidden glowing-border transition-all duration-300 flex flex-col group cursor-pointer">
+<div class="h-48 bg-surface-variant relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500" data-alt="An abstract representation of computer vision, showing a robotic eye or camera lens focusing on a digital overlay of grids and geometric shapes. The color palette features deep slate grays and electric blues, with high contrast. The image conveys themes of artificial intelligence observing the physical world in a sleek, modern lab setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAEEhNNQ5i0PCD7z5gSq4uH6oO6GSwFBnLwX07GcYXJ70XN0G4oEph3XSIpyxDIPZzIMuGM6WXr0fELXhXOJHl3wKqmUOwQglxbUD37_ZJyYvJAf3-FfIofT4eKD-zhVdnhVJP5mBLbisGjyWfBiMS7FpWdOm1mRGPWKVlFOW8OleD4wY9JKom7b7nUGKIP2peuUkRsAMfDlKbNu-dl7dN1uINi2Hs419V9hiVJNtnfKT92vTyyuIG5zSPijUCT3zyd63pVWfsMtFPZ');"></div>
+<div class="absolute top-3 right-3 px-2 py-1 bg-surface-container-highest/80 backdrop-blur border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">
+                            SYS_ID: 9912
+                        </div>
+</div>
+<div class="p-5 flex-1 flex flex-col tech-accent bg-[#020617]">
+<div class="flex gap-2 mb-3">
+<span class="text-[10px] font-label-mono px-2 py-1 rounded bg-secondary-container/30 text-secondary-fixed">Computer Vision</span>
+<span class="text-[10px] font-label-mono px-2 py-1 rounded bg-secondary-container/30 text-secondary-fixed">PyTorch</span>
+</div>
+<h3 class="font-headline-lg text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Gaze Tracking Analytics</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-1 line-clamp-2">Real-time edge computing application analyzing human focus patterns for UI UX optimization in high-stress environments.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/30 pt-4 mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-surface-variant overflow-hidden">
+<img alt="Student avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7pZvu9xEbeIbfeEctS1JXHOjSd-wL_ybJJD8YimpIkhC0PJM7LCxlXlGT_wMTjeTjX_MJCEz8jxRx6aO4UrDgUNPLkOCN-JTHdSb6dSI-Ff-RClfTTF2xozAWe19jkT3-IzWD-eMJNyyy7MIO93DbVYMIFCMklYcFYXKsdbuHsZT5L6Wz_HUAU1936kwvog9CDl-KEcMhF6G_ip6CqHiG14ZhNuxJUEtMEtzObDYR6zzzqJvSbFbnuDpb_nKrqEESFwR4N1Jy-X2r"/>
+</div>
+<span class="font-label-mono text-[12px] text-on-surface">M. Sato</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+</div>
+</article>
+<!-- Project Card 3 -->
+<article class="glass-card rounded-lg overflow-hidden glowing-border transition-all duration-300 flex flex-col group cursor-pointer">
+<div class="h-48 bg-surface-variant relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500" data-alt="A macro shot of a sprawling green circuit board or motherboard with intricate metallic pathways and microchips. The lighting is dark but dramatically highlights specific glowing nodes, creating a sense of active data processing. The aesthetic is strictly technological, sharp, and aligns with high-end hardware research environments." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBW5Uhicj2UcIXpNKVBjZGzHys84mo-wZc--4jNeMlMGBPN7f3WIjbbGi6dBfkdQCGD1iWkJrtpF8r49H5OjtT8flRjyDaku0qRWOyslPiR-EhRdcz1wxcHD1ms-GtNItBk8B2KBZlQ1448ucK4VOX-0W_0OmFK5XgXLQSvlBGmYBYEIEbBo_iYB74WD1ZtC49_T5y6cri9xYoDQvFLKps-LJxpZOGdHIvFLGse85ZyN63HP-bVdVbdT-pon3ZQdcJ6GZ3btybExRvZ');"></div>
+<div class="absolute top-3 right-3 px-2 py-1 bg-surface-container-highest/80 backdrop-blur border border-outline-variant rounded font-label-mono text-[10px] text-on-surface-variant">
+                            SYS_ID: 1104
+                        </div>
+</div>
+<div class="p-5 flex-1 flex flex-col tech-accent bg-[#020617]">
+<div class="flex gap-2 mb-3">
+<span class="text-[10px] font-label-mono px-2 py-1 rounded bg-secondary-container/30 text-secondary-fixed">Hardware</span>
+<span class="text-[10px] font-label-mono px-2 py-1 rounded bg-secondary-container/30 text-secondary-fixed">IoT</span>
+</div>
+<h3 class="font-headline-lg text-headline-md text-on-surface mb-2 group-hover:text-primary transition-colors">Micro-Sentinel Sensors</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-1 line-clamp-2">Low-power mesh network sensors designed for hostile environment data collection and secure transmission.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/30 pt-4 mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-surface-variant overflow-hidden">
+<img alt="Student avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBbh_OiBpa4ktkwj7IK97j5TK7ddeAjLms0N85iW2qDOe4LPfKOHwiSIMxfvAyxOCmxKuNQuTTlgrK3vxjTOie-shvJfJcaZfM4Dvg5HccbRbe7MuA13EGXCHYwnpFV9dEjsUfFMxg2HuY02agfKMgexQ9Te8toFcRzWvoOCXqxW-40EktECdANrAQOLMuyRK1hfczl3o5sdHgclPZUDc-nQfmVR_Ko-UXtkMOaE6OOas-D4_pWnNnrwOCqiUrvKh1yvVYyIw3hvBh"/>
+</div>
+<span class="font-label-mono text-[12px] text-on-surface">T. Barnes</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">arrow_outward</span>
+</div>
+</div>
+</article>
+</section>
+</div>
+<!-- Footer -->
+<footer class="w-full py-stack-lg border-t border-secondary/10 bg-surface-container-lowest mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin max-w-container-max mx-auto gap-4">
+<span class="font-display-lg text-headline-sm text-primary">FAST</span>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-center md:text-left">
+                    © 2024 Future Academy of Science and Technology. All Rights Reserved.
+                </p>
+<div class="flex gap-4 font-label-mono text-label-mono">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Protocol</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Security Ethics</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Neural Terms</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Lab Support</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

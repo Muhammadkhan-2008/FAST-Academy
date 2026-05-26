@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAST Institute - LMS Dashboard</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Sora:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#1c2b3e",
+                    "secondary": "#bec6e0",
+                    "secondary-container": "#3f465c",
+                    "tertiary-fixed": "#acf847",
+                    "surface": "#051426",
+                    "on-surface-variant": "#c2c6d6",
+                    "inverse-surface": "#d5e3fd",
+                    "on-secondary-container": "#adb4ce",
+                    "inverse-primary": "#005ac2",
+                    "primary": "#adc6ff",
+                    "tertiary": "#91db2a",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline": "#8c909f",
+                    "tertiary-container": "#65a100",
+                    "surface-bright": "#2c3a4e",
+                    "surface-variant": "#273649",
+                    "background": "#051426",
+                    "on-background": "#d5e3fd",
+                    "on-error": "#690005",
+                    "primary-fixed": "#d8e2ff",
+                    "on-tertiary": "#1f3700",
+                    "on-tertiary-container": "#1a2f00",
+                    "on-tertiary-fixed": "#102000",
+                    "primary-container": "#4d8eff",
+                    "inverse-on-surface": "#233144",
+                    "surface-container-low": "#0d1c2f",
+                    "on-surface": "#d5e3fd",
+                    "secondary-fixed": "#dae2fd",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-fixed-dim": "#91db2a",
+                    "surface-container": "#122033",
+                    "outline-variant": "#424754",
+                    "surface-dim": "#051426",
+                    "on-tertiary-fixed-variant": "#304f00",
+                    "on-primary-container": "#00285d",
+                    "surface-tint": "#adc6ff",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#010f21",
+                    "on-primary-fixed": "#001a42",
+                    "surface-container-highest": "#273649",
+                    "on-primary-fixed-variant": "#004395",
+                    "on-secondary": "#283044",
+                    "error-container": "#93000a",
+                    "on-primary": "#002e6a",
+                    "on-secondary-fixed": "#131b2e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "container-max": "1440px",
+                    "margin": "32px",
+                    "gutter": "24px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Sora"],
+                    "label-mono": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Sora"],
+                    "label-caps": ["Inter"],
+                    "headline-md": ["Sora"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Sora"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-mono": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Custom Utilities for Precision Modernism */
+        .glass-panel {
+            background-color: rgba(51, 65, 85, 0.4); /* Slate Gray Surface */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(190, 198, 224, 0.2); /* Secondary/20 border */
+        }
+        .glow-active {
+            box-shadow: inset 0 0 10px rgba(173, 198, 255, 0.2), 0 0 15px rgba(173, 198, 255, 0.1);
+        }
+        .lab-terminal-border {
+            border-top: 2px solid #acf847; /* Cyber Lime / Tertiary Fixed */
+        }
+        /* Scrollbar styling for a tech feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #051426; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273649; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #adc6ff; 
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md overflow-hidden flex h-screen selection:bg-primary/30 selection:text-primary">
+<!-- SideNavBar (Shared Component) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-screen flex-col z-40 h-full w-64 border-r border-secondary/20 bg-surface/40 backdrop-blur-xl shrink-0">
+<!-- Header -->
+<div class="p-margin border-b border-secondary/20 flex flex-col gap-unit">
+<h1 class="font-display-lg text-headline-md tracking-tighter text-on-surface">FAST Institute</h1>
+<p class="font-label-mono text-label-mono text-primary/80 uppercase tracking-widest text-xs">Precision Modernism</p>
+</div>
+<!-- Navigation Tabs -->
+<ul class="flex-1 py-stack-md flex flex-col gap-unit overflow-y-auto">
+<!-- Active Tab: Dashboard -->
+<li>
+<a class="flex items-center gap-stack-sm px-margin py-stack-sm w-full text-tertiary-fixed font-bold border-r-2 border-tertiary-fixed bg-tertiary-container/10 scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<!-- Inactive Tabs -->
+<li>
+<a class="flex items-center gap-stack-sm px-margin py-stack-sm w-full text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-body-md text-body-md">Classroom</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-sm px-margin py-stack-sm w-full text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-body-md text-body-md">Workspace</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-sm px-margin py-stack-sm w-full text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined">biotech</span>
+<span class="font-body-md text-body-md">Labs</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-sm px-margin py-stack-sm w-full text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md text-body-md">Scholarships</span>
+</a>
+</li>
+</ul>
+<!-- Footer Tabs & CTA -->
+<div class="p-margin border-t border-secondary/20 flex flex-col gap-stack-md">
+<ul class="flex flex-col gap-unit">
+<li>
+<a class="flex items-center gap-stack-sm w-full text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 rounded px-2 py-1" href="#">
+<span class="material-symbols-outlined text-sm">settings</span>
+<span class="font-label-mono text-label-mono">Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-stack-sm w-full text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 rounded px-2 py-1" href="#">
+<span class="material-symbols-outlined text-sm">help_center</span>
+<span class="font-label-mono text-label-mono">Support</span>
+</a>
+</li>
+</ul>
+<button class="w-full py-stack-sm bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-on-primary transition-all duration-300 rounded font-label-mono text-label-mono flex items-center justify-center gap-2 glow-active">
+<span class="material-symbols-outlined text-sm">radar</span>
+                System Scan
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 flex flex-col h-screen overflow-hidden bg-background relative">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center w-full px-margin h-20 sticky top-0 z-30 border-b border-secondary/20 bg-surface/40 backdrop-blur-md shrink-0">
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Brand (Hidden on desktop as side nav has it, but JSON says include) -->
+<div class="font-display-lg text-headline-md font-bold text-primary md:hidden">FAST</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-margin">
+<a class="text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors px-3 py-1 rounded font-body-md text-body-md opacity-80 hover:opacity-100" href="#">Research</a>
+<a class="text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors px-3 py-1 rounded font-body-md text-body-md opacity-80 hover:opacity-100" href="#">Faculty</a>
+<a class="text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors px-3 py-1 rounded font-body-md text-body-md opacity-80 hover:opacity-100" href="#">Archives</a>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-stack-md">
+<!-- Search (on_right per JSON) -->
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-sm">search</span>
+<input class="bg-surface-container-high border-none rounded-full py-1.5 pl-10 pr-4 font-label-mono text-label-mono text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary w-64 transition-all focus:w-72" placeholder="Query Databanks..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-tertiary-fixed rounded-full animate-pulse"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">terminal</span>
+</button>
+<!-- Profile Avatar -->
+<div class="h-8 w-8 rounded bg-surface-variant border border-secondary/30 overflow-hidden ml-2">
+<div class="w-full h-full bg-gradient-to-br from-primary/20 to-tertiary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Scrollable Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-margin">
+<div class="max-w-container-max mx-auto w-full grid grid-cols-12 gap-gutter">
+<!-- Hero / Status Overview -->
+<section class="col-span-12 glass-panel rounded-xl p-margin flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-md relative overflow-hidden group">
+<!-- Decorative Background element -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700"></div>
+<div class="relative z-10">
+<p class="font-label-mono text-label-mono text-tertiary-fixed mb-unit flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span>
+                            System Online · Cohort 24
+                        </p>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-stack-sm">Neural Term <span class="text-primary font-light">Active</span></h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                            Your cognitive load is optimal. 3 assignments pending across active sectors. Recommended action: Initialize Workspace for CS-401 practicals.
+                        </p>
+</div>
+<div class="relative z-10 flex gap-stack-md w-full md:w-auto">
+<div class="bg-surface-container-high rounded-lg p-stack-md flex-1 md:flex-none border border-secondary/10 text-center">
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-1">Overall Progress</p>
+<p class="font-headline-lg text-headline-lg text-on-surface">78%</p>
+</div>
+</div>
+</section>
+<!-- Left Column: Active Courses (Bento Grid) -->
+<section class="col-span-12 lg:col-span-8 flex flex-col gap-stack-lg">
+<div class="flex items-center justify-between border-b border-secondary/20 pb-unit">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">data_object</span>
+                            Active Modules
+                        </h3>
+<a class="font-label-mono text-label-mono text-primary hover:text-primary-fixed transition-colors" href="#">View Directory →</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Course Card: AI -->
+<article class="glass-panel rounded-xl p-stack-md flex flex-col gap-stack-md hover:border-primary/50 transition-colors duration-300 relative group overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-label-mono font-bold bg-primary/10 text-primary mb-2 uppercase tracking-wider">Core Requirement</span>
+<h4 class="font-headline-md text-headline-md text-on-surface">Artificial Intelligence</h4>
+</div>
+<span class="font-label-mono text-label-mono text-on-surface-variant bg-surface-container-high px-2 py-1 rounded">CS-401</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex-1 relative z-10">Neural networks, deep learning architectures, and cognitive modeling.</p>
+<div class="relative z-10 mt-auto">
+<div class="flex justify-between font-label-mono text-label-mono text-sm mb-unit">
+<span class="text-on-surface-variant">Progress</span>
+<span class="text-primary">85%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[85%] relative">
+<div class="absolute right-0 top-0 bottom-0 w-4 bg-white/30 blur-[2px]"></div>
+</div>
+</div>
+</div>
+<div class="flex gap-stack-sm mt-stack-sm relative z-10">
+<button class="flex-1 bg-surface-bright hover:bg-surface-container border border-secondary/20 text-on-surface font-label-mono text-label-mono py-1.5 rounded transition-colors text-sm">Syllabus</button>
+<button class="flex-1 bg-primary text-on-primary font-label-mono text-label-mono py-1.5 rounded hover:bg-primary-fixed transition-colors text-sm shadow-[0_0_10px_rgba(173,198,255,0.2)]">Enter Lab</button>
+</div>
+</article>
+<!-- Course Card: ML -->
+<article class="glass-panel rounded-xl p-stack-md flex flex-col gap-stack-md hover:border-tertiary/50 transition-colors duration-300 relative group overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-label-mono font-bold bg-tertiary/10 text-tertiary mb-2 uppercase tracking-wider">Advanced</span>
+<h4 class="font-headline-md text-headline-md text-on-surface">Machine Learning Systems</h4>
+</div>
+<span class="font-label-mono text-label-mono text-on-surface-variant bg-surface-container-high px-2 py-1 rounded">CS-405</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex-1 relative z-10">Predictive modeling, reinforcement learning, and deployment pipelines.</p>
+<div class="relative z-10 mt-auto">
+<div class="flex justify-between font-label-mono text-label-mono text-sm mb-unit">
+<span class="text-on-surface-variant">Progress</span>
+<span class="text-tertiary">62%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full w-[62%] relative">
+<div class="absolute right-0 top-0 bottom-0 w-4 bg-white/30 blur-[2px]"></div>
+</div>
+</div>
+</div>
+<div class="flex gap-stack-sm mt-stack-sm relative z-10">
+<button class="flex-1 bg-surface-bright hover:bg-surface-container border border-secondary/20 text-on-surface font-label-mono text-label-mono py-1.5 rounded transition-colors text-sm">Syllabus</button>
+<button class="flex-1 bg-primary text-on-primary font-label-mono text-label-mono py-1.5 rounded hover:bg-primary-fixed transition-colors text-sm shadow-[0_0_10px_rgba(173,198,255,0.2)]">Enter Lab</button>
+</div>
+</article>
+<!-- Course Card: Cyber Security (Full Width in Grid) -->
+<article class="md:col-span-2 bg-[#020617] rounded-xl p-stack-md flex flex-col md:flex-row gap-stack-md lab-terminal-border relative group overflow-hidden border-x border-b border-secondary/10">
+<!-- Matrix-like background hint -->
+<div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, #acf847 2px, #acf847 4px); background-size: 100% 4px;"></div>
+<div class="flex-1 relative z-10 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-fixed">shield_lock</span>
+                                            Cyber Security Ops
+                                        </h4>
+<span class="font-label-mono text-label-mono text-tertiary-fixed">CYB-300</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-md max-w-xl">Threat intelligence, network penetration testing, and cryptographic protocols.</p>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="flex-1">
+<div class="flex justify-between font-label-mono text-label-mono text-sm mb-unit text-on-surface-variant">
+<span>Simulated Attacks Mitigated</span>
+<span>42/50</span>
+</div>
+<div class="h-1 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-[84%]"></div>
+</div>
+</div>
+<button class="bg-surface-container border border-tertiary-fixed/30 text-tertiary-fixed hover:bg-tertiary-fixed hover:text-[#020617] font-label-mono text-label-mono py-2 px-4 rounded transition-all text-sm shrink-0 flex items-center gap-2">
+<span class="w-2 h-2 bg-tertiary-fixed rounded-full animate-pulse inline-block"></span>
+                                        Access Terminal
+                                    </button>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Right Column: Schedule & Comms -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-stack-lg">
+<!-- Live Classes Schedule -->
+<div class="glass-panel rounded-xl p-stack-md flex flex-col h-full">
+<div class="flex items-center justify-between mb-stack-md">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">event</span>
+                                Chronology
+                            </h3>
+</div>
+<div class="flex flex-col gap-stack-sm relative border-l border-secondary/20 ml-2 pl-4">
+<!-- Timeline Item 1 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-tertiary-fixed shadow-[0_0_8px_#acf847]"></div>
+<p class="font-label-mono text-label-mono text-tertiary-fixed text-xs mb-0.5">14:00 - 15:30 (LIVE NOW)</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">CS-401 Lecture: Backpropagation</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">videocam</span> Virtual Hall A
+                                </p>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative mt-stack-sm">
+<div class="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-secondary/50"></div>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-xs mb-0.5">16:00 - 18:00</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">CYB-300 Practical Lab</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">terminal</span> Secure Node Beta
+                                </p>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative mt-stack-sm">
+<div class="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-secondary/50"></div>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-xs mb-0.5">Tomorrow, 09:00</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">Faculty Review Session</p>
+</div>
+</div>
+<button class="mt-auto pt-stack-md font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors text-sm w-full text-center">
+                            Expand Calendar ↓
+                        </button>
+</div>
+<!-- Announcements -->
+<div class="bg-surface-container-low border border-secondary/10 rounded-xl p-stack-md flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">campaign</span>
+                            Directives
+                        </h3>
+<ul class="flex flex-col gap-stack-sm">
+<li class="bg-surface-container-high p-unit rounded border border-secondary/5">
+<p class="font-label-mono text-label-mono text-primary text-xs mb-1">System Architecture</p>
+<p class="font-body-md text-body-md text-on-surface text-sm">Server maintenance scheduled for 0200h UTC. Workspace access will be read-only.</p>
+</li>
+<li class="bg-surface-container-high p-unit rounded border border-secondary/5">
+<p class="font-label-mono text-label-mono text-on-surface-variant text-xs mb-1">Scholarships Dept</p>
+<p class="font-body-md text-body-md text-on-surface text-sm">Applications for Turing Grants are due by End of Cycle.</p>
+</li>
+</ul>
+</div>
+</section>
+</div>
+<!-- Bottom spacing for widget -->
+<div class="h-32"></div>
+</div>
+</main>
+<!-- Chatbook Widget (Messaging Interface) -->
+<aside class="fixed bottom-margin right-margin w-80 sm:w-96 glass-panel rounded-lg shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 flex flex-col border border-secondary/20 overflow-hidden transform transition-transform duration-300">
+<!-- Header -->
+<div class="px-stack-sm py-2 bg-surface border-b border-secondary/20 flex justify-between items-center cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary-fixed opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-tertiary-fixed"></span>
+</span>
+<span class="font-label-mono text-label-mono text-on-surface font-bold">Chatbook_Active</span>
+</div>
+<div class="flex gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">minimize</span>
+</button>
+</div>
+</div>
+<!-- Messages Area -->
+<div class="p-stack-sm h-64 overflow-y-auto flex flex-col gap-stack-sm bg-surface-container-lowest/80">
+<p class="text-center font-label-mono text-label-mono text-on-surface-variant text-[10px] uppercase tracking-widest my-2">Connection Secured</p>
+<!-- Incoming Bubble (Slate Gray, Sharp Left) -->
+<div class="flex gap-2 items-end self-start max-w-[85%]">
+<div class="h-6 w-6 rounded-sm bg-secondary/20 shrink-0 flex items-center justify-center border border-secondary/30 text-[10px] font-label-mono text-secondary">SYS</div>
+<div class="bg-surface-container-highest text-on-surface p-2 rounded-lg rounded-bl-none font-body-md text-body-md text-sm border border-secondary/10 shadow-sm">
+                    Automated Alert: Lab 402 environment has been provisioned for your CYB-300 practical. Credentials sent to secure vault.
+                </div>
+</div>
+<!-- Outgoing Bubble (Electric Blue, Sharp Right) -->
+<div class="flex gap-2 items-end self-end max-w-[85%] flex-row-reverse">
+<div class="bg-primary text-on-primary p-2 rounded-lg rounded-br-none font-body-md text-body-md text-sm shadow-[0_0_10px_rgba(173,198,255,0.15)]">
+                    Acknowledged. Initiating connection sequence.
+                </div>
+</div>
+<!-- Incoming Bubble (Instructor) -->
+<div class="flex gap-2 items-end self-start max-w-[85%] mt-2">
+<div class="h-6 w-6 rounded-sm bg-tertiary/20 shrink-0 flex items-center justify-center border border-tertiary/30 text-[10px] font-label-mono text-tertiary">DR</div>
+<div class="bg-surface-container-highest text-on-surface p-2 rounded-lg rounded-bl-none font-body-md text-body-md text-sm border border-secondary/10 shadow-sm">
+                    Don't forget to review the neural weight parameters before execution.
+                </div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-stack-sm border-t border-secondary/20 bg-surface">
+<div class="relative flex items-center">
+<input class="w-full bg-transparent border-none text-on-surface font-label-mono text-label-mono text-sm focus:ring-0 focus:outline-none placeholder:text-on-surface-variant/50 pl-2 pr-10" placeholder="Transmit data..." type="text"/>
+<div class="absolute bottom-0 left-0 w-full h-[1px] bg-secondary/30"></div>
+<div class="absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-300 peer-focus:w-full" onblur="this.style.width='0%'" onfocus="this.style.width='100%'" style="width: 0%;"></div>
+<button class="absolute right-1 text-primary hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</aside>
+</body></html>

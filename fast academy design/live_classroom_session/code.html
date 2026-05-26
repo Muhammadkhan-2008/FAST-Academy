@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAST Live Classroom</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#1c2b3e",
+                      "secondary": "#bec6e0",
+                      "secondary-container": "#3f465c",
+                      "tertiary-fixed": "#acf847",
+                      "surface": "#051426",
+                      "on-surface-variant": "#c2c6d6",
+                      "inverse-surface": "#d5e3fd",
+                      "on-secondary-container": "#adb4ce",
+                      "inverse-primary": "#005ac2",
+                      "primary": "#adc6ff",
+                      "tertiary": "#91db2a",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "primary-fixed-dim": "#adc6ff",
+                      "outline": "#8c909f",
+                      "tertiary-container": "#65a100",
+                      "surface-bright": "#2c3a4e",
+                      "surface-variant": "#273649",
+                      "background": "#051426",
+                      "on-background": "#d5e3fd",
+                      "on-error": "#690005",
+                      "primary-fixed": "#d8e2ff",
+                      "on-tertiary": "#1f3700",
+                      "on-tertiary-container": "#1a2f00",
+                      "on-tertiary-fixed": "#102000",
+                      "primary-container": "#4d8eff",
+                      "inverse-on-surface": "#233144",
+                      "surface-container-low": "#0d1c2f",
+                      "on-surface": "#d5e3fd",
+                      "secondary-fixed": "#dae2fd",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "tertiary-fixed-dim": "#91db2a",
+                      "surface-container": "#122033",
+                      "outline-variant": "#424754",
+                      "surface-dim": "#051426",
+                      "on-tertiary-fixed-variant": "#304f00",
+                      "on-primary-container": "#00285d",
+                      "surface-tint": "#adc6ff",
+                      "error": "#ffb4ab",
+                      "surface-container-lowest": "#010f21",
+                      "on-primary-fixed": "#001a42",
+                      "surface-container-highest": "#273649",
+                      "on-primary-fixed-variant": "#004395",
+                      "on-secondary": "#283044",
+                      "error-container": "#93000a",
+                      "on-primary": "#002e6a",
+                      "on-secondary-fixed": "#131b2e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "stack-md": "16px",
+                      "stack-sm": "8px",
+                      "container-max": "1440px",
+                      "margin": "32px",
+                      "gutter": "24px",
+                      "stack-lg": "32px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Sora"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Sora"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for high-tech feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(190, 198, 224, 0.2); 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(173, 198, 255, 0.5); 
+        }
+        
+        /* Inner Glow Utility */
+        .glow-active {
+            box-shadow: inset 0 0 15px rgba(173, 198, 255, 0.2), 0 0 15px rgba(173, 198, 255, 0.1);
+        }
+        .glow-tertiary {
+            box-shadow: 0 0 15px rgba(145, 219, 42, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen overflow-hidden flex flex-col antialiased">
+<!-- Top Header -->
+<header class="flex justify-between items-center w-full px-margin h-20 border-b border-secondary/20 bg-surface/40 backdrop-blur-md shrink-0 z-50">
+<div class="flex items-center gap-stack-md">
+<!-- Brand / Back -->
+<button class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors border border-secondary/20 hover:border-primary/50">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="h-8 w-px bg-secondary/20 mx-2"></div>
+<!-- Session Title & Status -->
+<div class="flex items-center gap-stack-md">
+<div class="px-3 py-1 rounded bg-tertiary/10 flex items-center gap-2 border border-tertiary/20">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-tertiary tracking-widest">LIVE</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Introduction to Neural Networks</h1>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-variant border border-secondary/20 font-label-mono text-label-mono text-secondary">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span>142 Active</span>
+</div>
+<div class="flex items-center gap-4 border-l border-secondary/20 pl-stack-md">
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer transition-colors">settings</span>
+<button class="px-6 py-2 rounded-lg bg-error/10 border border-error/50 text-error font-label-mono text-label-mono hover:bg-error hover:text-on-error transition-all duration-300">
+                    Leave Lab
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Workspace Area -->
+<main class="flex-1 flex overflow-hidden p-unit gap-unit bg-surface-container-low">
+<!-- Left Column: Video Stream & Controls -->
+<section class="flex-1 flex flex-col gap-unit min-w-[600px]">
+<!-- Large Video Stream -->
+<div class="flex-1 rounded-xl border border-secondary/20 bg-surface-container-lowest relative overflow-hidden flex items-center justify-center shadow-lg group">
+<!-- Background Image representing the live video feed -->
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-[1.02]" data-alt="A cinematic, medium-close shot of an intelligent-looking instructor in a high-tech laboratory setting. The lighting is high-contrast deep navy and slate gray with vibrant electric blue and cyber lime glowing accents in the background. The instructor is engaged, looking directly at the camera, conveying authority and experimental energy. Shot with a professional lens, shallow depth of field, futuristic modernist aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAPn2eDtBtv3NU-CXdxeRVvboRqQXNdiLdiTCnt62UrckJLzXtn4dyolfgmfgVuUVRpugjkTFPuvxc03Cnd3TQcc3Fs4oXQf0DMaqIbYAs3uwcknph7a2A8IBkAXDdHydd6k60O-xwBgdQOQRdyPpHyHZi8gXbHqrMSbmIyhkaHP5-VADc1ztmrRPbIj2pLznO9UcN6Cmv3GlY2uGqgQRDoLDDsXnM4-PH3H329mGnYq6Bmt5A38xy43ttmiutmokyJ841EjX5chita');">
+</div>
+<!-- Inner Glow overlay for depth -->
+<div class="absolute inset-0 border border-primary/10 rounded-xl pointer-events-none"></div>
+<!-- Video Overlays -->
+<div class="absolute top-4 right-4 flex gap-2">
+<div class="w-8 h-8 rounded bg-surface/60 backdrop-blur-md border border-secondary/20 flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">mic_off</span>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 bg-surface/80 backdrop-blur-xl px-4 py-2 rounded-lg border border-secondary/20 flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary glow-tertiary"></div>
+<span class="font-label-mono text-label-mono text-on-surface">Dr. Aris Thorne | Lead Researcher</span>
+</div>
+<!-- Floating Neural Assistant Widget (Sticky Chatbook variant) -->
+<button class="absolute bottom-6 right-6 w-14 h-14 bg-surface-container-high border border-primary/50 rounded-full flex items-center justify-center text-primary shadow-[0_0_20px_rgba(77,142,255,0.3)] cursor-pointer hover:scale-105 transition-all z-40 hover:bg-primary-container hover:text-on-primary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</button>
+</div>
+<!-- Bottom Control Bar -->
+<div class="h-24 rounded-xl border border-secondary/20 bg-surface/60 backdrop-blur-xl flex items-center justify-center gap-stack-lg shadow-lg shrink-0">
+<button class="w-14 h-14 rounded-full bg-surface-variant border border-secondary/30 flex items-center justify-center text-on-surface hover:border-primary/50 hover:text-primary transition-all group relative">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">mic</span>
+</button>
+<button class="w-14 h-14 rounded-full bg-surface-variant border border-secondary/30 flex items-center justify-center text-on-surface hover:border-primary/50 hover:text-primary transition-all group relative">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">videocam</span>
+</button>
+<button class="w-14 h-14 rounded-full bg-surface-variant border border-secondary/30 flex items-center justify-center text-on-surface hover:border-primary/50 hover:text-primary transition-all group relative">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">present_to_all</span>
+</button>
+<!-- Active State Example (Electric Blue Inner Glow) -->
+<button class="w-14 h-14 rounded-full bg-primary-container/10 border border-primary text-primary flex items-center justify-center glow-active transition-all group relative">
+<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1;">pan_tool</span>
+<!-- Tooltip -->
+<span class="absolute -top-10 bg-surface-variant text-on-surface px-2 py-1 rounded font-label-mono text-label-caps text-[10px] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-secondary/20">Hand Raised</span>
+</button>
+<div class="w-px h-8 bg-secondary/20 mx-2"></div>
+<button class="w-14 h-14 rounded-full bg-error border border-error flex items-center justify-center text-on-error hover:bg-error/80 transition-colors shadow-[0_0_15px_rgba(105,0,5,0.4)]">
+<span class="material-symbols-outlined">call_end</span>
+</button>
+</div>
+</section>
+<!-- Right Column: Live Chat Panel & Workspace Tabs -->
+<aside class="w-[400px] flex flex-col gap-unit shrink-0">
+<!-- Segmented Control Tabs -->
+<div class="flex gap-2 p-2 rounded-xl border border-secondary/20 bg-surface/60 backdrop-blur-xl shrink-0">
+<button class="flex-1 py-2 rounded-lg bg-surface-variant border border-primary/30 text-primary font-label-mono text-label-mono shadow-sm transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">forum</span> Chat
+                </button>
+<button class="flex-1 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-mono text-label-mono hover:bg-surface-variant/50 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">draw</span> Board
+                </button>
+<button class="flex-1 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-label-mono text-label-mono hover:bg-surface-variant/50 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">description</span> Docs
+                </button>
+</div>
+<!-- Chatbook / Lab Terminal Container -->
+<div class="flex-1 rounded-xl border-t-2 border-t-tertiary border-x border-b border-secondary/20 bg-surface-container-lowest relative flex flex-col overflow-hidden shadow-lg">
+<!-- Terminal Header -->
+<div class="p-3 border-b border-secondary/20 bg-surface-container/50 flex justify-between items-center shrink-0">
+<span class="font-label-mono text-label-mono text-tertiary flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">terminal</span> SYS.CHAT_LOG
+                    </span>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span>
+</span>
+</div>
+<!-- Chat Messages Area -->
+<div class="flex-1 overflow-y-auto p-4 flex flex-col gap-stack-md relative">
+<!-- Subtle background pattern for terminal feel -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, rgba(213, 227, 253, 1) 1px, transparent 0); background-size: 24px 24px;"></div>
+<!-- System Message -->
+<div class="text-center font-label-mono text-label-caps text-secondary/60 my-2 relative z-10">
+                        --- Lab Session Initiated ---
+                    </div>
+<!-- Incoming Message (Left) -->
+<div class="flex gap-3 relative z-10 w-full">
+<div class="w-8 h-8 rounded-[2px] bg-surface-variant shrink-0 bg-cover border border-secondary/20" data-alt="A small, square portrait of a young female student with a focused expression, high contrast lighting, set against a dark tech background. Professional modernism style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB1nKBQJsgwp90_bR8plfFTUGYManImXDjkqu-htowVQzALmcgufXhbxPdf4kqyJ-0IW_Rw_83EcJBrpDWxGT5-fwh8KnPXYojlEXTRicHOGVP05_ZGAnUYlfIFlKCuyqzGnWCvK2gmNI4AV9qfySbG8_cKuFYXm-hT30Nf0PuoJXYt9nr3xtCYKGOia9gYl2Wy-9uKjwzZQa7jFmwCJCZwmcPBBIcyzhSKpjAUbVP_qqNjGSGKmz5Ko2UiyqGxxX9GOjTLhZxHlEGK');"></div>
+<div class="flex flex-col gap-1 max-w-[80%]">
+<span class="font-label-mono text-label-caps text-secondary ml-1">Sarah K.</span>
+<div class="bg-surface-variant border border-secondary/20 text-on-surface px-4 py-3 rounded-xl rounded-tl-none font-body-md text-body-md shadow-sm">
+                                Could you re-explain the backpropagation weight adjustment? I lost track at the second derivative.
+                            </div>
+</div>
+</div>
+<!-- Incoming Message (Left) -->
+<div class="flex gap-3 relative z-10 w-full">
+<div class="w-8 h-8 rounded-[2px] bg-surface-variant shrink-0 bg-cover border border-secondary/20" data-alt="A small, square portrait of a male researcher looking attentive. High contrast dark theme lighting, tech environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_X6Df9-0dxz6hefspmt_-FghS3k6lCh_Jw6hoUAqcpSoYLOsHQDN6sR9t_Pu3EGvWfFgPpfh77F5Hlo1rAGMhdWubfC2zP3fP0ocGFSQqBGr5xJW7qVHlltpe4vA5ToP2MVgfiSrWfwFLW5mnud9zSKv3-uaGhOpbIQLLqJTffkovABd5FQjKc-uodARVQVaV0JczJxw1idsaxFCxlZurrdg3eZ2b7P3onJbCXYVf0vLKVOjUwP4rYdh5hC6-qTIue52sKBllh2z-');"></div>
+<div class="flex flex-col gap-1 max-w-[80%]">
+<span class="font-label-mono text-label-caps text-secondary ml-1">Jian W.</span>
+<div class="bg-surface-variant border border-secondary/20 text-on-surface px-4 py-3 rounded-xl rounded-tl-none font-body-md text-body-md shadow-sm">
+                                I think the key is the chain rule application on layer L-1. Let me drop a snippet.
+                            </div>
+</div>
+</div>
+<!-- Code Snippet Box (Lab Terminal Style within chat) -->
+<div class="ml-11 border border-secondary/30 bg-[#020617] rounded-lg p-3 relative z-10 max-w-[85%]">
+<div class="font-label-mono text-[13px] text-tertiary-fixed leading-relaxed">
+                            delta_l = (W_l+1.T.dot(delta_l+1)) * <br/>
+                                      sigmoid_prime(z_l)
+                        </div>
+</div>
+<!-- Outgoing Message (Right - Current User) -->
+<div class="flex gap-3 relative z-10 w-full self-end flex-row-reverse">
+<div class="w-8 h-8 rounded-[2px] bg-primary-container shrink-0 flex items-center justify-center text-on-primary-container font-label-mono font-bold border border-primary/50">
+                            ME
+                        </div>
+<div class="flex flex-col gap-1 max-w-[80%] items-end">
+<span class="font-label-mono text-label-caps text-primary mr-1">You</span>
+<div class="bg-primary text-on-primary border border-primary/40 px-4 py-3 rounded-xl rounded-tr-none font-body-md text-body-md shadow-[0_0_15px_rgba(0,90,194,0.2)]">
+                                Ah, that makes sense. The transpose aligns the dimensions for the backward pass. Thanks Jian!
+                            </div>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-4 bg-surface-container/80 border-t border-secondary/20 backdrop-blur-md shrink-0">
+<div class="flex items-end gap-2">
+<div class="flex-1 relative group">
+<textarea class="w-full bg-transparent border-0 border-b border-secondary/50 focus:border-primary focus:ring-0 text-on-surface font-label-mono text-label-mono placeholder:text-outline-variant px-0 py-2 resize-none peer" placeholder="&gt; Enter comm link message..." rows="1"></textarea>
+<!-- Animated bottom border on focus -->
+<div class="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 peer-focus:w-full"></div>
+</div>
+<button class="w-10 h-10 rounded bg-primary text-on-primary flex items-center justify-center hover:bg-primary-fixed-dim transition-colors shrink-0 shadow-md">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

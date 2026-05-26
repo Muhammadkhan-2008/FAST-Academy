@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Privacy &amp; Policy Center | FAST</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#1c2b3e",
+                        "secondary": "#bec6e0",
+                        "secondary-container": "#3f465c",
+                        "tertiary-fixed": "#acf847",
+                        "surface": "#051426",
+                        "on-surface-variant": "#c2c6d6",
+                        "inverse-surface": "#d5e3fd",
+                        "on-secondary-container": "#adb4ce",
+                        "inverse-primary": "#005ac2",
+                        "primary": "#adc6ff",
+                        "tertiary": "#91db2a",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "primary-fixed-dim": "#adc6ff",
+                        "outline": "#8c909f",
+                        "tertiary-container": "#65a100",
+                        "surface-bright": "#2c3a4e",
+                        "surface-variant": "#273649",
+                        "background": "#051426",
+                        "on-background": "#d5e3fd",
+                        "on-error": "#690005",
+                        "primary-fixed": "#d8e2ff",
+                        "on-tertiary": "#1f3700",
+                        "on-tertiary-container": "#1a2f00",
+                        "on-tertiary-fixed": "#102000",
+                        "primary-container": "#4d8eff",
+                        "inverse-on-surface": "#233144",
+                        "surface-container-low": "#0d1c2f",
+                        "on-surface": "#d5e3fd",
+                        "secondary-fixed": "#dae2fd",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed-dim": "#91db2a",
+                        "surface-container": "#122033",
+                        "outline-variant": "#424754",
+                        "surface-dim": "#051426",
+                        "on-tertiary-fixed-variant": "#304f00",
+                        "on-primary-container": "#00285d",
+                        "surface-tint": "#adc6ff",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#010f21",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-highest": "#273649",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-secondary": "#283044",
+                        "error-container": "#93000a",
+                        "on-primary": "#002e6a",
+                        "on-secondary-fixed": "#131b2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "container-max": "1440px",
+                        "margin": "32px",
+                        "gutter": "24px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Sora"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Sora"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Sora"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Ambient Background Glow */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 90, 194, 0.05) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #051426; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273649; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f465c; 
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen antialiased selection:bg-primary selection:text-on-primary font-body-md text-body-md overflow-x-hidden">
+<div class="flex h-screen overflow-hidden">
+<!-- Shared Component: SideNavBar -->
+<aside class="hidden md:flex fixed left-0 top-0 h-screen flex flex-col z-40 h-full w-64 border-r border-secondary/20 border-r border-secondary/20 bg-surface/40 backdrop-blur-xl shrink-0">
+<!-- Header -->
+<div class="p-stack-md border-b border-secondary/10 flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center shrink-0">
+<span class="font-display-lg text-headline-md tracking-tighter text-on-surface">F</span>
+</div>
+<div>
+<h1 class="font-display-lg text-body-lg font-bold text-on-surface">FAST Institute</h1>
+<p class="font-label-mono text-label-caps text-on-surface-variant">Precision Modernism</p>
+</div>
+</div>
+<!-- Main Nav -->
+<nav class="flex-1 py-stack-md flex flex-col gap-unit overflow-y-auto">
+<a class="flex items-center gap-3 px-stack-md py-3 mx-stack-sm rounded-DEFAULT text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-stack-md py-3 mx-stack-sm rounded-DEFAULT text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">school</span>
+                    Classroom
+                </a>
+<a class="flex items-center gap-3 px-stack-md py-3 mx-stack-sm rounded-DEFAULT text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+                    Workspace
+                </a>
+<a class="flex items-center gap-3 px-stack-md py-3 mx-stack-sm rounded-DEFAULT text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">biotech</span>
+                    Labs
+                </a>
+<a class="flex items-center gap-3 px-stack-md py-3 mx-stack-sm rounded-DEFAULT text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+                    Scholarships
+                </a>
+</nav>
+<!-- Footer Nav -->
+<div class="p-stack-md border-t border-secondary/10 flex flex-col gap-unit">
+<a class="flex items-center gap-3 px-stack-md py-2 rounded-DEFAULT text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 px-stack-md py-2 rounded-DEFAULT text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md transition-all duration-300 scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[18px]">help_center</span>
+                    Support
+                </a>
+<button class="mt-4 w-full py-2 px-4 bg-surface-container-high border border-primary/20 rounded text-primary font-label-mono text-label-caps hover:bg-primary/10 transition-colors flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-[16px] group-hover:animate-pulse">radar</span>
+                    System Scan
+                </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto md:ml-64 relative">
+<!-- Content Wrapper -->
+<div class="flex-1 w-full max-w-container-max mx-auto px-gutter md:px-margin py-stack-lg flex flex-col gap-stack-lg">
+<!-- Page Header & Search -->
+<header class="flex flex-col gap-stack-md">
+<div class="flex items-center gap-2 text-tertiary-fixed font-label-mono text-label-caps">
+<span class="material-symbols-outlined text-[14px]">policy</span>
+<span>SYS.DOC.VER_2.4.1</span>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-stack-md">
+<div>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary tracking-tight">Privacy &amp; Policy Center</h1>
+<p class="font-body-md text-on-surface-variant max-w-2xl mt-2">Comprehensive documentation outlining our protocols for data stewardship, algorithmic integrity, and user rights within the FAST ecosystem.</p>
+</div>
+<!-- Search Terminal -->
+<div class="relative w-full lg:w-96 group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="w-full bg-[#020617] border-b border-surface-container-highest group-focus-within:border-primary text-on-surface font-label-mono text-label-mono py-4 pl-12 pr-4 focus:outline-none focus:ring-0 transition-colors shadow-[0_4px_20px_rgba(0,0,0,0.2)]" placeholder="Query policies..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+<span class="font-label-mono text-label-caps text-surface-container-highest group-focus-within:text-primary/50">↵</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Policy Sections Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter mt-stack-md">
+<!-- Card: Data Security -->
+<article class="p-8 border border-secondary/20 bg-surface/40 backdrop-blur-md rounded-xl flex flex-col gap-stack-md relative overflow-hidden group hover:border-primary/50 transition-colors duration-300">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-container/10 flex items-center justify-center border border-primary/20 text-primary">
+<span class="material-symbols-outlined">shield_lock</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Data Security</h2>
+</div>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                            Our architectural foundation employs zero-trust principles and quantum-resistant encryption protocols. All experimental data, user telemetry, and communication logs are vaulted in decentralized, off-grid storage nodes. We maintain strict compartmentalization to ensure a localized breach cannot compromise systemic integrity.
+                        </p>
+<div class="mt-auto pt-4 border-t border-secondary/10 flex items-center justify-between">
+<span class="font-label-mono text-label-caps text-tertiary-fixed flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span> SYSTEM ENFORCED</span>
+<a class="font-label-mono text-label-caps text-primary hover:underline flex items-center gap-1" href="#">Read Protocol <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</article>
+<!-- Card: AI Ethics -->
+<article class="p-8 border border-secondary/20 bg-surface/40 backdrop-blur-md rounded-xl flex flex-col gap-stack-md relative overflow-hidden group hover:border-primary/50 transition-colors duration-300">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-container/10 flex items-center justify-center border border-primary/20 text-primary">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">AI Ethics</h2>
+</div>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                            Neural network training within FAST facilities adheres to strict non-bias and transparency mandates. All generative models must maintain a documented lineage of training data. We prohibit the deployment of autonomous systems capable of executing unverified experimental procedures without secondary human oversight.
+                        </p>
+<div class="mt-auto pt-4 border-t border-secondary/10 flex items-center justify-between">
+<span class="font-label-mono text-label-caps text-secondary flex items-center gap-1">VERSION 3.2</span>
+<a class="font-label-mono text-label-caps text-primary hover:underline flex items-center gap-1" href="#">Read Protocol <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</article>
+<!-- Card: Platform Privacy Rules -->
+<article class="p-8 border border-secondary/20 bg-surface/40 backdrop-blur-md rounded-xl flex flex-col gap-stack-md relative overflow-hidden group hover:border-primary/50 transition-colors duration-300">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-container/10 flex items-center justify-center border border-primary/20 text-primary">
+<span class="material-symbols-outlined">visibility_off</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Platform Privacy Rules</h2>
+</div>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                            User identity within the FAST network is pseudo-anonymous by default. Interaction telemetry is aggregated and stripped of identifying markers before being utilized for systemic optimization. Peer-to-peer workspace communications are end-to-end encrypted; the Institute holds no decryption keys for private lab channels.
+                        </p>
+<div class="mt-auto pt-4 border-t border-secondary/10 flex items-center justify-between">
+<span class="font-label-mono text-label-caps text-secondary flex items-center gap-1">UPDATED: 24H AGO</span>
+<a class="font-label-mono text-label-caps text-primary hover:underline flex items-center gap-1" href="#">Read Protocol <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</article>
+<!-- Card: Terms of Service -->
+<article class="p-8 border border-secondary/20 bg-surface/40 backdrop-blur-md rounded-xl flex flex-col gap-stack-md relative overflow-hidden group hover:border-primary/50 transition-colors duration-300">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-container/10 flex items-center justify-center border border-primary/20 text-primary">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Terms of Service</h2>
+</div>
+<p class="font-body-md text-on-surface-variant leading-relaxed">
+                            Access to FAST infrastructure is a privilege granted strictly for authorized research and educational purposes. Utilization of computation clusters for non-approved commercial endeavors or cryptographic mining will result in immediate credential revocation and neural-link suspension.
+                        </p>
+<div class="mt-auto pt-4 border-t border-secondary/10 flex items-center justify-between">
+<span class="font-label-mono text-label-caps text-secondary flex items-center gap-1">MANDATORY</span>
+<a class="font-label-mono text-label-caps text-primary hover:underline flex items-center gap-1" href="#">Read Protocol <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+</article>
+</div>
+<div class="py-stack-lg flex justify-center">
+<button class="bg-surface-container-high border border-primary/30 text-primary font-label-mono text-label-caps py-3 px-6 rounded-DEFAULT hover:bg-primary/10 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Full Policy Archive (.PDF)
+                    </button>
+</div>
+</div>
+<!-- Shared Component: Footer -->
+<footer class="mt-auto w-full py-stack-lg border-t border-secondary/10 bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center px-margin max-w-container-max mx-auto gap-stack-md">
+<div class="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
+<span class="font-display-lg text-headline-sm text-primary">FAST</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant hidden md:inline">|</span>
+<span class="font-body-md text-body-md text-on-surface-variant">© 2024 Future Academy of Science and Technology. All Rights Reserved.</span>
+</div>
+<div class="flex flex-wrap justify-center gap-6 font-label-mono text-label-mono">
+<a class="text-tertiary underline" href="#">Privacy Protocol</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Security Ethics</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Neural Terms</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Lab Support</a>
+</div>
+</footer>
+</main>
+<!-- Sticky Chatbook Widget -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(173,198,255,0.4)] hover:scale-105 hover:shadow-[0_0_30px_rgba(173,198,255,0.6)] transition-all duration-300 relative group">
+<span class="material-symbols-outlined text-[24px]">forum</span>
+<!-- Online Indicator -->
+<span class="absolute top-0 right-0 w-3 h-3 bg-tertiary-fixed rounded-full border-2 border-background"></span>
+<!-- Tooltip -->
+<div class="absolute bottom-full right-0 mb-4 w-48 bg-[#020617] border-t-2 border-tertiary-fixed p-3 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+<p class="font-label-mono text-label-caps text-on-surface">Legal Assistant Online</p>
+</div>
+</button>
+</div>
+</div>
+</body></html>

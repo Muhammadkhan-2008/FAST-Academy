@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  /* --- 🏛️ INSTITUTIONAL PLATINUM PALETTE --- */
+  --primary: #4B0082;       /* Bengan Purple (Indigo) */
+  --primary-glow: rgba(75, 0, 130, 0.1);
+  --secondary: #2563EB;      /* Vibrant Blue */
+  --secondary-glow: rgba(37, 99, 235, 0.1);
+  --accent: #7C3AED;         /* Electric Violet */
+  
+  --bg-deep: #F8FAFC;        /* Off White */
+  --bg-base: #FFFFFF;        /* Pure White */
+  --bg-subtle: #F1F5F9;      /* Light Grey */
+  --bg-card: #FFFFFF;
+  
+  --text-main: #0F172A;      /* Dark Navy */
+  --text-dim: #475569;       /* Slate Grey */
+  --text-muted: #94A3B8;     /* Muted Grey */
+  
+  --border-light: #E2E8F0;
+  --border-glow: #CBD5E1;
+  
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-full: 999px;
+  
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+
+/* --- 🧬 CORE ENGINE --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+/* --- 🧊 GLASS & CARD SYSTEM --- */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--secondary);
+  box-shadow: var(--shadow-lg), 0 0 20px var(--secondary-glow);
+}
+
+/* --- ⚡️ PREMIUM INTERFACE --- */
+.premium-btn {
+  background: var(--primary);
+  color: white;
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(75, 0, 130, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.premium-btn:hover {
+  background: var(--secondary);
+  transform: scale(1.02) translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+}
+
+.premium-btn-ghost {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.premium-btn-ghost:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* --- 🖱️ INTERACTIVE TEXT --- */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- 📊 BENTO GRID --- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+/* --- 🚥 CUSTOM SCROLLBAR --- */
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: var(--bg-subtle); }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--border-glow); border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+.mesh-grid {
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, var(--bg-subtle) 25%, var(--border-light) 50%, var(--bg-subtle) 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}

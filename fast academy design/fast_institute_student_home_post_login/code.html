@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAST - Homepage</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Sora:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#4d8eff",
+                    "outline": "#8c909f",
+                    "on-secondary": "#283044",
+                    "on-secondary-container": "#adb4ce",
+                    "inverse-surface": "#d5e3fd",
+                    "on-surface": "#d5e3fd",
+                    "surface-variant": "#273649",
+                    "on-background": "#d5e3fd",
+                    "on-surface-variant": "#c2c6d6",
+                    "on-primary-fixed-variant": "#004395",
+                    "on-tertiary-container": "#1a2f00",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#00285d",
+                    "tertiary-container": "#65a100",
+                    "on-error": "#690005",
+                    "on-tertiary": "#1f3700",
+                    "tertiary": "#91db2a",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#0d1c2f",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-tertiary-fixed-variant": "#304f00",
+                    "error-container": "#93000a",
+                    "outline-variant": "#424754",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "on-secondary-fixed": "#131b2e",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "inverse-on-surface": "#233144",
+                    "tertiary-fixed-dim": "#91db2a",
+                    "surface-container": "#122033",
+                    "inverse-primary": "#005ac2",
+                    "secondary-fixed": "#dae2fd",
+                    "background": "#051426",
+                    "secondary": "#bec6e0",
+                    "surface-tint": "#adc6ff",
+                    "tertiary-fixed": "#acf847",
+                    "surface-dim": "#051426",
+                    "on-primary-fixed": "#001a42",
+                    "surface-container-lowest": "#010f21",
+                    "secondary-container": "#3f465c",
+                    "on-primary": "#002e6a",
+                    "surface-bright": "#2c3a4e",
+                    "surface-container-highest": "#273649",
+                    "surface": "#051426",
+                    "primary-fixed": "#d8e2ff",
+                    "on-tertiary-fixed": "#102000",
+                    "surface-container-high": "#1c2b3e",
+                    "primary": "#adc6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-lg": "32px",
+                    "unit": "4px",
+                    "stack-sm": "8px",
+                    "gutter": "24px",
+                    "container-max": "1440px",
+                    "stack-md": "16px",
+                    "margin": "32px"
+            },
+            "fontFamily": {
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Sora"
+                    ],
+                    "display-lg": [
+                            "Sora"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Sora"
+                    ],
+                    "label-mono": [
+                            "JetBrains Mono"
+                    ],
+                    "headline-lg": [
+                            "Sora"
+                    ]
+            },
+            "fontSize": {
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "label-mono": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(51, 65, 85, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(140, 144, 159, 0.2);
+        }
+        .glow-effect {
+            box-shadow: 0 0 15px rgba(77, 142, 255, 0.2);
+        }
+        .terminal-panel {
+            background: #020617;
+            border-top: 1px solid #91db2a;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low dark:bg-surface-container-low text-primary dark:text-primary border-r border-outline-variant/20 fixed left-0 top-0 h-screen flex flex-col z-40 overflow-y-auto w-64 hidden md:flex">
+<div class="p-4 mb-4">
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary font-bold tracking-tighter">FAST</h1>
+<div class="mt-4 flex items-center gap-stack-sm">
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-DEFAULT object-cover" data-alt="A small, square profile picture avatar showing a focused young male researcher with short dark hair, wearing a dark futuristic lab coat against a deep navy background with a subtle cyber-lime glow, conveying a high-tech corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAndrvzgT9PtgiyjyV4edzcLg50BPLRpHQCuwEg8qLR446VrG7H11gz9-CqQWtlFIa8OQXpmQ6kZ1nZJdtXJZqydyMQ4NWw0INOfgqhL-BZnahaPxzhV79n1_M-CIJwYtvbezfJimLSTGDpmkdQQQ4i89L11MGOE7wAtjRVbEmVm5WVaiaypPjQAXx91hcqo2OxZ5YmioaqOpsnKBu-Y9gvbA9OZoZ3t_a2IuAN-7F4adoVfg-robSxwJal7BTBKvlSS92a647vCdBr"/>
+<div>
+<div class="font-label-mono text-label-mono text-on-surface">System Operator</div>
+<div class="text-xs text-on-surface-variant font-label-mono">Level 4 Researcher</div>
+</div>
+</div>
+</div>
+<div class="flex-1 px-2 space-y-1">
+<a class="flex items-center gap-stack-sm bg-primary-container/10 text-primary border-r-4 border-primary px-4 py-3 hover:bg-surface-variant/30 hover:text-on-surface transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-mono text-label-mono">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant px-4 py-3 hover:bg-surface-variant/30 hover:text-on-surface transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-label-mono text-label-mono">Classroom</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant px-4 py-3 hover:bg-surface-variant/30 hover:text-on-surface transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span class="font-label-mono text-label-mono">Labs</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant px-4 py-3 hover:bg-surface-variant/30 hover:text-on-surface transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+<span class="font-label-mono text-label-mono">Research</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant px-4 py-3 hover:bg-surface-variant/30 hover:text-on-surface transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-mono text-label-mono">Library</span>
+</a>
+<a class="flex items-center gap-stack-sm text-on-surface-variant px-4 py-3 hover:bg-surface-variant/30 hover:text-on-surface transition-all active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-mono text-label-mono">Settings</span>
+</a>
+</div>
+<div class="p-4 mt-auto border-t border-outline-variant/20">
+<button class="w-full bg-primary text-on-primary font-label-mono text-label-mono py-2 rounded-DEFAULT hover:bg-primary-container transition-colors glow-effect">Initialize Lab Session</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-64 w-full max-w-container-max mx-auto px-margin pt-stack-lg pb-stack-lg">
+<!-- Welcome Header -->
+<header class="flex justify-between items-end mb-stack-lg border-b border-outline-variant/20 pb-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Welcome back, Operator</h2>
+<p class="text-on-surface-variant mt-2">Systems nominal. 3 active projects require attention.</p>
+</div>
+<button class="bg-primary text-on-primary font-label-mono text-label-mono px-6 py-3 rounded-DEFAULT hover:bg-primary-container transition-colors glow-effect flex items-center gap-2">
+                Enter Portal <span class="material-symbols-outlined" data-icon="login">login</span>
+</button>
+</header>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Last Lab Session (Bento Top Left) -->
+<section class="md:col-span-8 glass-panel rounded-lg p-stack-md flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="font-label-caps text-label-caps text-primary tracking-widest uppercase mb-1">Last Lab Session</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Quantum State Diagnostics</h3>
+</div>
+<span class="bg-tertiary/10 text-tertiary font-label-mono text-label-mono px-2 py-1 rounded-DEFAULT border border-tertiary/30">Stable</span>
+</div>
+<div class="terminal-panel p-4 rounded-DEFAULT font-label-mono text-label-mono text-primary/80 mt-4 mb-4 flex-grow">
+                    &gt; INIT SEQUENCE... OK<br/>
+                    &gt; SCANNING SECTOR 7... OK<br/>
+                    &gt; ANOMALY DETECTED IN NODE 4A<br/>
+                    &gt; ATTEMPTING REROUTE... <span class="animate-pulse">_</span>
+</div>
+<div class="flex justify-end mt-2">
+<button class="text-primary hover:text-primary-container font-label-mono text-label-mono flex items-center gap-2 transition-colors">
+                        Continue Research <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Upcoming Class Countdown (Bento Top Right) -->
+<section class="md:col-span-4 glass-panel rounded-lg p-stack-md flex flex-col justify-center items-center text-center">
+<div class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase mb-4">Upcoming Session</div>
+<div class="font-display-lg text-display-lg text-primary mb-2 glow-effect p-4 rounded-full border border-primary/20 bg-surface/50 w-32 h-32 flex items-center justify-center">
+                     02:14
+                 </div>
+<h4 class="font-headline-md text-headline-md mt-4 text-on-surface">Advanced Kinetics</h4>
+<p class="font-label-mono text-label-mono text-outline mt-2">Lab Room 304 - Dr. Vance</p>
+<button class="mt-6 border border-outline-variant text-on-surface font-label-mono text-label-mono px-4 py-2 rounded-DEFAULT hover:border-primary hover:text-primary transition-colors w-full">Join Virtual Lobby</button>
+</section>
+<!-- Quick Links / Resources (Bento Bottom Left) -->
+<section class="md:col-span-4 glass-panel rounded-lg p-stack-md mt-stack-md">
+<h3 class="font-headline-md text-headline-md border-b border-outline-variant/20 pb-2 mb-4 text-on-surface">Resources</h3>
+<ul class="space-y-3">
+<li><a class="flex items-center justify-between text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#"><span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="description">description</span> Protocol Manuals</span> <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></a></li>
+<li><a class="flex items-center justify-between text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#"><span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="database">database</span> Data Archives</span> <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></a></li>
+<li><a class="flex items-center justify-between text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#"><span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="school">school</span> Scholarships</span> <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></a></li>
+<li><a class="flex items-center justify-between text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#"><span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="support_agent">support_agent</span> Tech Support</span> <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></a></li>
+</ul>
+</section>
+<!-- Activity Feed (Bento Bottom Right) -->
+<section class="md:col-span-8 glass-panel rounded-lg p-stack-md mt-stack-md">
+<h3 class="font-headline-md text-headline-md border-b border-outline-variant/20 pb-2 mb-4 text-on-surface">System Activity</h3>
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-DEFAULT bg-primary/10 border border-primary/30 flex items-center justify-center text-primary mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<div class="font-body-md text-on-surface">Data model compiled successfully.</div>
+<div class="font-label-mono text-label-mono text-outline text-xs mt-1">10 mins ago • Project Alpha</div>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-DEFAULT bg-error/10 border border-error/30 flex items-center justify-center text-error mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span>
+</div>
+<div>
+<div class="font-body-md text-on-surface">Calibration error in Node 2. Requires manual reset.</div>
+<div class="font-label-mono text-label-mono text-outline text-xs mt-1">45 mins ago • Equipment Status</div>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-DEFAULT bg-tertiary/10 border border-tertiary/30 flex items-center justify-center text-tertiary mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="upload">upload</span>
+</div>
+<div>
+<div class="font-body-md text-on-surface">New datasets available for review in Research Hub.</div>
+<div class="font-label-mono text-label-mono text-outline text-xs mt-1">2 hours ago • System Notice</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

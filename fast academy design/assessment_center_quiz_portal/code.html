@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAST Assessment Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#1c2b3e",
+                      "secondary": "#bec6e0",
+                      "secondary-container": "#3f465c",
+                      "tertiary-fixed": "#acf847",
+                      "surface": "#051426",
+                      "on-surface-variant": "#c2c6d6",
+                      "inverse-surface": "#d5e3fd",
+                      "on-secondary-container": "#adb4ce",
+                      "inverse-primary": "#005ac2",
+                      "primary": "#adc6ff",
+                      "tertiary": "#91db2a",
+                      "on-error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "primary-fixed-dim": "#adc6ff",
+                      "outline": "#8c909f",
+                      "tertiary-container": "#65a100",
+                      "surface-bright": "#2c3a4e",
+                      "surface-variant": "#273649",
+                      "background": "#051426",
+                      "on-background": "#d5e3fd",
+                      "on-error": "#690005",
+                      "primary-fixed": "#d8e2ff",
+                      "on-tertiary": "#1f3700",
+                      "on-tertiary-container": "#1a2f00",
+                      "on-tertiary-fixed": "#102000",
+                      "primary-container": "#4d8eff",
+                      "inverse-on-surface": "#233144",
+                      "surface-container-low": "#0d1c2f",
+                      "on-surface": "#d5e3fd",
+                      "secondary-fixed": "#dae2fd",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "tertiary-fixed-dim": "#91db2a",
+                      "surface-container": "#122033",
+                      "outline-variant": "#424754",
+                      "surface-dim": "#051426",
+                      "on-tertiary-fixed-variant": "#304f00",
+                      "on-primary-container": "#00285d",
+                      "surface-tint": "#adc6ff",
+                      "error": "#ffb4ab",
+                      "surface-container-lowest": "#010f21",
+                      "on-primary-fixed": "#001a42",
+                      "surface-container-highest": "#273649",
+                      "on-primary-fixed-variant": "#004395",
+                      "on-secondary": "#283044",
+                      "error-container": "#93000a",
+                      "on-primary": "#002e6a",
+                      "on-secondary-fixed": "#131b2e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "stack-md": "16px",
+                      "stack-sm": "8px",
+                      "container-max": "1440px",
+                      "margin": "32px",
+                      "gutter": "24px",
+                      "stack-lg": "32px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Sora"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Sora"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Sora"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Sora"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .symbol-filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Proctored Mode specific styles */
+        body {
+            background-color: #0F172A; /* Base Layer Deep Navy */
+        }
+        
+        /* Custom Scrollbar for minimal distraction */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273649;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f465c;
+        }
+        
+        /* Terminal styles */
+        .terminal-container {
+            background-color: #020617;
+            border-top: 1px solid #acf847; /* Cyber Lime */
+        }
+        
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Chatbook Styles */
+        .chat-bubble-user {
+            border-radius: 12px 12px 0 12px;
+        }
+        .chat-bubble-incoming {
+            border-radius: 12px 12px 12px 0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top AppBar (Proctored Mode - Suppressed Navigation Links) -->
+<header class="flex justify-between items-center w-full px-margin h-20 sticky top-0 z-50 border-b border-error/30 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-stack-md">
+<!-- Brand -->
+<div class="font-display-lg text-headline-md font-bold text-error flex items-center gap-2">
+<span class="material-symbols-outlined symbol-filled">shield</span>
+<span>FAST</span>
+</div>
+<div class="h-6 w-px bg-error/30"></div>
+<!-- Proctored Mode Indicator -->
+<div class="flex items-center gap-2 text-error font-label-mono text-label-mono">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-error"></span>
+</span>
+                PROCTORED MODE ACTIVE
+            </div>
+</div>
+<!-- Timer -->
+<div class="bg-surface-container-high border border-outline-variant rounded-lg px-4 py-2 flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">timer</span>
+<span class="font-label-mono text-headline-md text-on-surface" id="exam-timer">01:45:22</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="text-right">
+<div class="font-label-mono text-label-mono text-on-surface">Candidate ID: EX-9942</div>
+<div class="font-body-md text-body-md text-secondary">Neural Networks Midterm</div>
+</div>
+<div class="h-10 w-10 rounded bg-surface-container-high border border-outline flex items-center justify-center">
+<img alt="Student Profile" class="h-full w-full object-cover opacity-80" data-alt="A small, square, slightly desaturated profile picture of a male student looking focused. The lighting is slightly blue-tinted to match the high-tech, serious environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA19qGUoNO-8Lq560TuQB-9LzBXzJaJuSso1QvENrcGAezbkX0GtfIq-rKTMEKNVtOc696QkGb1NIt3aaiErmPVHERHEQnjmx_6dxZfG3VnuKu7F3c3pR1IKmsw6B4J6gMEtY5_bU39_KMlKgMuV67JC73Scf-f__n-3T6TF7FV-Wb1xGci1C7qP5syMwauANHoEaQQ5WdzCE1BY-t2dgPz38jjcojdAspGrfgKRMvELqMBb8H5_jfZGAYEDsXvmwBXaLFL3WJTF0On"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar Navigation (Question Progress) -->
+<nav class="w-64 border-r border-secondary/20 bg-surface/40 backdrop-blur-xl flex flex-col z-40 overflow-y-auto">
+<div class="p-gutter border-b border-secondary/10">
+<h2 class="font-label-mono text-label-mono text-secondary mb-2 uppercase tracking-widest">Progress</h2>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[40%]"></div>
+</div>
+<div class="flex justify-between mt-2 font-label-mono text-[10px] text-secondary">
+<span>4/10 Complete</span>
+<span>40%</span>
+</div>
+</div>
+<div class="flex-1 py-stack-md flex flex-col gap-1 px-4">
+<!-- Completed Question -->
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-secondary hover:bg-surface-bright/50 transition-colors">
+<span class="material-symbols-outlined symbol-filled text-tertiary-fixed text-[18px]">check_circle</span>
+<span class="font-label-mono text-label-mono flex-1">Q1. Linear Algebra</span>
+<span class="font-label-mono text-[10px] text-tertiary-fixed">Saved</span>
+</button>
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-secondary hover:bg-surface-bright/50 transition-colors">
+<span class="material-symbols-outlined symbol-filled text-tertiary-fixed text-[18px]">check_circle</span>
+<span class="font-label-mono text-label-mono flex-1">Q2. Backpropagation</span>
+<span class="font-label-mono text-[10px] text-tertiary-fixed">Saved</span>
+</button>
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-secondary hover:bg-surface-bright/50 transition-colors">
+<span class="material-symbols-outlined symbol-filled text-tertiary-fixed text-[18px]">check_circle</span>
+<span class="font-label-mono text-label-mono flex-1">Q3. Activation Functions</span>
+<span class="font-label-mono text-[10px] text-tertiary-fixed">Saved</span>
+</button>
+<!-- Active Question -->
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 border border-primary/30 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[18px]">radio_button_checked</span>
+<span class="font-label-mono text-label-mono flex-1 font-bold">Q4. CNN Architecture</span>
+<span class="font-label-mono text-[10px] text-primary">Active</span>
+</button>
+<!-- Unanswered Questions -->
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-bright/50 transition-colors">
+<span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+<span class="font-label-mono text-label-mono flex-1">Q5. Loss Optimization</span>
+</button>
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-bright/50 transition-colors">
+<span class="material-symbols-outlined text-outline text-[18px]">code</span>
+<span class="font-label-mono text-label-mono flex-1">Q6. Implement ReLU</span>
+</button>
+<button class="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-bright/50 transition-colors">
+<span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+<span class="font-label-mono text-label-mono flex-1">Q7. Overfitting</span>
+</button>
+</div>
+<div class="p-gutter border-t border-secondary/10">
+<button class="w-full bg-error text-on-error py-2 rounded font-label-mono text-label-mono hover:bg-error/80 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">exit_to_app</span>
+                    Submit Exam
+                </button>
+</div>
+</nav>
+<!-- Main Content Area (Question Canvas) -->
+<main class="flex-1 bg-background relative overflow-y-auto p-margin flex justify-center">
+<div class="max-w-[800px] w-full flex flex-col gap-stack-lg pb-32">
+<!-- Question Header -->
+<div class="border-b border-secondary/20 pb-4">
+<div class="flex items-center gap-3 mb-2">
+<span class="bg-primary/20 text-primary px-2 py-1 rounded font-label-mono text-[12px] border border-primary/30">Question 4</span>
+<span class="bg-surface-container-highest text-secondary px-2 py-1 rounded font-label-mono text-[12px]">Multiple Choice</span>
+<span class="bg-surface-container-highest text-secondary px-2 py-1 rounded font-label-mono text-[12px]">10 Points</span>
+</div>
+<h1 class="font-display-lg text-headline-lg text-on-surface mt-4 leading-tight">
+                        In a Convolutional Neural Network (CNN), what is the primary purpose of a pooling layer?
+                    </h1>
+</div>
+<!-- Context/Image Area (Optional based on question) -->
+<div class="bg-[#334155]/40 backdrop-blur-md rounded-xl p-6 border border-secondary/20 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent z-0"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant relative z-10 leading-relaxed">
+                         Consider a standard architecture (e.g., VGG16) where convolutional layers are interspersed with pooling operations before flattening for the dense layers.
+                     </p>
+</div>
+<!-- Options -->
+<div class="flex flex-col gap-4">
+<label class="relative flex cursor-pointer group">
+<input class="peer sr-only" name="q4" type="radio"/>
+<div class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-4 flex items-start gap-4 transition-all duration-200 hover:border-primary/50 hover:bg-surface-container peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:shadow-[0_0_15px_rgba(173,198,255,0.1)]">
+<div class="mt-1 w-5 h-5 rounded-full border-2 border-outline peer-checked:border-primary flex items-center justify-center shrink-0">
+<div class="w-2.5 h-2.5 rounded-full bg-primary opacity-0 scale-0 transition-all duration-200 peer-checked:opacity-100 peer-checked:scale-100"></div>
+</div>
+<div class="flex-1">
+<span class="font-label-mono text-secondary mr-2">A.</span>
+<span class="font-body-lg text-on-surface">To increase the spatial dimensions of the feature maps, allowing for higher resolution output.</span>
+</div>
+</div>
+</label>
+<label class="relative flex cursor-pointer group">
+<input class="peer sr-only" name="q4" type="radio"/>
+<div class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-4 flex items-start gap-4 transition-all duration-200 hover:border-primary/50 hover:bg-surface-container peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:shadow-[0_0_15px_rgba(173,198,255,0.1)]">
+<div class="mt-1 w-5 h-5 rounded-full border-2 border-outline peer-checked:border-primary flex items-center justify-center shrink-0">
+<div class="w-2.5 h-2.5 rounded-full bg-primary opacity-0 scale-0 transition-all duration-200 peer-checked:opacity-100 peer-checked:scale-100"></div>
+</div>
+<div class="flex-1">
+<span class="font-label-mono text-secondary mr-2">B.</span>
+<span class="font-body-lg text-on-surface">To progressively reduce the spatial size of the representation to reduce the amount of parameters and computation in the network.</span>
+</div>
+</div>
+</label>
+<label class="relative flex cursor-pointer group">
+<input class="peer sr-only" name="q4" type="radio"/>
+<div class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-4 flex items-start gap-4 transition-all duration-200 hover:border-primary/50 hover:bg-surface-container peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:shadow-[0_0_15px_rgba(173,198,255,0.1)]">
+<div class="mt-1 w-5 h-5 rounded-full border-2 border-outline peer-checked:border-primary flex items-center justify-center shrink-0">
+<div class="w-2.5 h-2.5 rounded-full bg-primary opacity-0 scale-0 transition-all duration-200 peer-checked:opacity-100 peer-checked:scale-100"></div>
+</div>
+<div class="flex-1">
+<span class="font-label-mono text-secondary mr-2">C.</span>
+<span class="font-body-lg text-on-surface">To introduce non-linearity into the model, similar to activation functions like ReLU or Sigmoid.</span>
+</div>
+</div>
+</label>
+<label class="relative flex cursor-pointer group">
+<input class="peer sr-only" name="q4" type="radio"/>
+<div class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-4 flex items-start gap-4 transition-all duration-200 hover:border-primary/50 hover:bg-surface-container peer-checked:border-primary peer-checked:bg-primary/10 peer-checked:shadow-[0_0_15px_rgba(173,198,255,0.1)]">
+<div class="mt-1 w-5 h-5 rounded-full border-2 border-outline peer-checked:border-primary flex items-center justify-center shrink-0">
+<div class="w-2.5 h-2.5 rounded-full bg-primary opacity-0 scale-0 transition-all duration-200 peer-checked:opacity-100 peer-checked:scale-100"></div>
+</div>
+<div class="flex-1">
+<span class="font-label-mono text-secondary mr-2">D.</span>
+<span class="font-body-lg text-on-surface">To calculate the gradient of the loss function during the backpropagation step.</span>
+</div>
+</div>
+</label>
+</div>
+<!-- Action Bar -->
+<div class="flex justify-between items-center pt-8 border-t border-secondary/20">
+<button class="px-6 py-2 border border-[#334155] rounded bg-transparent text-secondary font-label-mono text-label-mono hover:border-primary/50 hover:text-on-surface transition-all duration-300 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                        Previous
+                    </button>
+<div class="flex items-center gap-4">
+<button class="px-4 py-2 border border-outline-variant rounded bg-surface-container text-secondary font-label-mono text-label-mono hover:bg-surface-container-high transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+                            Flag for Review
+                        </button>
+<button class="px-8 py-2 bg-[#005ac2] text-white rounded font-label-mono text-label-mono hover:bg-primary-container hover:text-on-primary-container transition-all shadow-[0_0_10px_rgba(0,90,194,0.3)] flex items-center gap-2 group">
+                            Next
+                            <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Sticky Chatbook Widget (Proctor Support) -->
+<div class="fixed bottom-margin right-margin z-50 flex flex-col items-end">
+<!-- Collapsed State (Button) -->
+<button class="h-14 w-14 rounded-full bg-surface-container-high border border-outline shadow-lg flex items-center justify-center text-primary hover:bg-surface-variant transition-colors relative" id="chat-toggle">
+<span class="material-symbols-outlined">headset_mic</span>
+<!-- Notification Dot -->
+<span class="absolute top-0 right-0 flex h-3 w-3 -mt-1 -mr-1">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-tertiary"></span>
+</span>
+</button>
+<!-- Expanded State (Hidden by default for this static demo, inline styles show structure) -->
+<div class="hidden w-80 bg-surface-container border border-outline rounded-xl shadow-2xl flex-col overflow-hidden mb-4 translate-y-2 opacity-0 transition-all duration-300" id="chat-window">
+<!-- Chat Header -->
+<div class="bg-surface-container-highest p-4 border-b border-outline flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">support_agent</span>
+<span class="font-label-mono text-label-mono text-on-surface">Live Proctor Support</span>
+</div>
+<button class="text-secondary hover:text-on-surface" id="chat-close">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Chat Body -->
+<div class="h-64 p-4 overflow-y-auto flex flex-col gap-3 text-sm font-body-md">
+<!-- Incoming -->
+<div class="flex gap-2 w-[85%]">
+<div class="h-6 w-6 rounded-sm bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-secondary">smart_toy</span>
+</div>
+<div class="bg-[#334155] text-on-surface p-3 chat-bubble-incoming border border-outline-variant">
+                         Hello EX-9942. I am your automated proctor. I noticed a shift in lighting. Is everything okay?
+                     </div>
+</div>
+<!-- User -->
+<div class="flex gap-2 w-[85%] self-end flex-row-reverse">
+<div class="h-6 w-6 rounded-sm bg-[#005ac2] flex items-center justify-center shrink-0 text-white">
+<span class="font-label-caps text-[10px]">ME</span>
+</div>
+<div class="bg-[#005ac2] text-white p-3 chat-bubble-user">
+                         Yes, the sun went behind a cloud. I can turn on a desk lamp if needed.
+                     </div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-3 border-t border-outline bg-surface-container-lowest">
+<div class="relative">
+<input class="w-full bg-transparent border-b border-[#334155] focus:border-[#adc6ff] text-on-surface font-label-mono text-label-mono py-2 pl-2 pr-8 focus:ring-0 focus:outline-none transition-colors" placeholder="Type message..." type="text"/>
+<button class="absolute right-1 top-2 text-primary hover:text-inverse-primary">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // Simple chat toggle interaction
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatClose = document.getElementById('chat-close');
+
+        function toggleChat() {
+            if (chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.remove('hidden');
+                setTimeout(() => {
+                    chatWindow.classList.remove('translate-y-2', 'opacity-0');
+                }, 10);
+            } else {
+                chatWindow.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => {
+                    chatWindow.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        chatToggle.addEventListener('click', toggleChat);
+        chatClose.addEventListener('click', toggleChat);
+    </script>
+</body></html>

@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": "ceo_001",
+      "name": "Circle CEO",
+      "email": "ceo@circle.com",
+      "password": "$2b$10$v7m6.k8K6l4M5Q6H7I8J9O0P1Q2R3S4T5U6V7W8X9Y0Z1A2B3C4D5",
+      "role": "ceo",
+      "status": "active"
+    },
+    {
+      "id": "1778249352045",
+      "name": "Muhammad khan",
+      "email": "khanmuhammadkolachi390@gmail.com",
+      "password": "$2b$10$6jyTzhVTApgbjOOQ5p2UuONm/42NM/3LzM8.Ltq8fa1X7ikhSHNCq",
+      "role": "ceo",
+      "status": "active"
+    },
+    {
+      "id": "1778249404140",
+      "name": "Muhammad khan",
+      "email": "kiddozone2008@gmail.com",
+      "password": "$2b$10$LShOJbPyvDPOfxq12/b8HOzIaemX/ISW299kQSu/DvaFIWjTxyDBq",
+      "role": "teacher",
+      "status": "pending"
+    }
+  ],
+  "teachers": [],
+  "students": [],
+  "courses": [],
+  "verifications": [],
+  "live_sessions": [],
+  "assignments": [],
+  "messages": [],
+  "settings": {
+    "academyName": "Bhai's Students Academy",
+    "logo": "/assets/logo.png",
+    "feeStructure": {
+      "enrollment": 5000,
+      "monthly": 2000
+    }
+  }
+}

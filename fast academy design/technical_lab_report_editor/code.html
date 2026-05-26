@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAST - Lab Report Editor</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Sora:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#bec6e0",
+                        "inverse-on-surface": "#233144",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-container-lowest": "#010f21",
+                        "on-primary-container": "#00285d",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#91db2a",
+                        "on-surface-variant": "#c2c6d6",
+                        "surface-dim": "#051426",
+                        "background": "#051426",
+                        "surface-container-highest": "#273649",
+                        "on-tertiary-container": "#1a2f00",
+                        "on-surface": "#d5e3fd",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-container-high": "#1c2b3e",
+                        "on-secondary-container": "#adb4ce",
+                        "surface-container": "#122033",
+                        "on-secondary": "#283044",
+                        "surface-tint": "#adc6ff",
+                        "outline-variant": "#424754",
+                        "on-primary-fixed": "#001a42",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#91db2a",
+                        "primary": "#adc6ff",
+                        "primary-fixed": "#d8e2ff",
+                        "on-background": "#d5e3fd",
+                        "surface-container-low": "#0d1c2f",
+                        "surface-bright": "#2c3a4e",
+                        "secondary-container": "#3f465c",
+                        "tertiary-fixed": "#acf847",
+                        "primary-container": "#4d8eff",
+                        "inverse-primary": "#005ac2",
+                        "outline": "#8c909f",
+                        "on-tertiary": "#1f3700",
+                        "tertiary-container": "#65a100",
+                        "surface": "#051426",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-tertiary-fixed": "#102000",
+                        "inverse-surface": "#d5e3fd",
+                        "on-primary": "#002e6a",
+                        "surface-variant": "#273649",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-tertiary-fixed-variant": "#304f00",
+                        "on-secondary-fixed": "#131b2e",
+                        "secondary-fixed": "#dae2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin": "32px",
+                        "stack-lg": "32px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Sora"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Sora"],
+                        "headline-lg-mobile": ["Sora"],
+                        "display-lg": ["Sora"],
+                        "label-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-mono": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for a more tech feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273649; /* surface-variant */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #424754; /* outline-variant */
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 15px rgba(77, 142, 255, 0.2);
+        }
+        
+        @keyframes scan {
+            0% { transform: translateY(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(200%); opacity: 0; }
+        }
+        .scan-line {
+            animation: scan 3s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen w-screen overflow-hidden flex selection:bg-primary-container selection:text-white">
+<!-- SideNavBar (Shared Component) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-screen w-64 border-r border-secondary/20 bg-surface/40 backdrop-blur-xl z-40 transition-all duration-300">
+<!-- Header -->
+<div class="p-margin flex items-center gap-4 border-b border-secondary/10">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-secondary/20">
+<span class="material-symbols-outlined text-primary" data-icon="science">science</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md tracking-tighter text-on-surface">FAST</h1>
+<p class="font-label-mono text-label-mono text-on-surface-variant text-[10px]">Precision Modernism</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 py-stack-md flex flex-col gap-1 px-4 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span>Classroom</span>
+</a>
+<!-- Active State: Workspace -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-tertiary-fixed font-bold border-r-2 border-tertiary-fixed bg-tertiary-container/10 scale-98 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="terminal" data-weight="fill" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<span>Workspace</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+<span>Labs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-body-md hover:text-primary transition-colors hover:bg-surface-bright/50 hover:backdrop-blur-md duration-300 scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Scholarships</span>
+</a>
+</div>
+<!-- Footer Actions -->
+<div class="p-4 border-t border-secondary/10 flex flex-col gap-2">
+<button class="w-full py-2 flex items-center justify-center gap-2 rounded-lg border border-primary/30 text-primary font-label-mono text-label-mono hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="radar">radar</span>
+                System Scan
+            </button>
+<div class="flex justify-between mt-2 px-2">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined" data-icon="settings">settings</span></a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined" data-icon="help_center">help_center</span></a>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col md:ml-64 h-full relative z-0">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center w-full px-margin h-20 sticky top-0 z-50 border-b border-secondary/20 bg-surface/40 backdrop-blur-md">
+<div class="flex items-center gap-6">
+<!-- Mobile Menu Trigger (hidden on md) -->
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="hidden md:flex items-center gap-6">
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 px-3 py-1 rounded" href="#">Research</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 px-3 py-1 rounded" href="#">Faculty</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors hover:bg-white/5 px-3 py-1 rounded" href="#">Archives</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-tertiary-fixed rounded-full animate-pulse"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</button>
+<div class="w-8 h-8 rounded border border-secondary/30 overflow-hidden bg-surface-variant ml-2">
+<img alt="User experimentalist avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a user experimentalist avatar in a high-tech laboratory setting. The individual is lit by cool, bright electric blue and stark white light, emphasizing a modern, analytical mood. The background is slightly blurred, hinting at advanced digital interfaces and sleek scientific equipment, fitting the minimalist precision aesthetic of the platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8zD6nxw2Yo-6VKygRDxzhpA08UReJ1oAan0CtSIxcpp6dXH376HnJ4eSWVkm8w__q7iieCk17THOyb_RO6JMU2AqmgapOKle6BwAfbUpCjnB1yHa-OFg7Wh76UAgcg5bGNJhd8a-m-2qAN3gJHTjlM8WvvBRBv3eF5cjqeh8ifJQzu-2bQTY7zYv-JfiToMZBKmnkrncsqG8TjAh6RN9-ljsWYsosOdc933X9GjVoOfUI4e1shGJzxsvbBuwz6HPNUFkj-UyahOZv"/>
+</div>
+</div>
+</header>
+<!-- Secure Workspace Editor Area -->
+<div class="flex-1 p-gutter overflow-hidden flex flex-col lg:flex-row gap-gutter">
+<!-- Left Pane: Markdown Editor -->
+<section class="flex-[2] flex flex-col bg-surface/40 backdrop-blur-xl border border-secondary/20 rounded-xl overflow-hidden relative shadow-lg shadow-black/20">
+<!-- Decorative Top Border -->
+<div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-container to-transparent opacity-50"></div>
+<!-- Editor Header Toolbar -->
+<div class="px-6 py-4 border-b border-secondary/20 flex flex-col gap-4 bg-surface/20">
+<div class="flex justify-between items-center">
+<input class="bg-transparent border-none outline-none font-headline-md text-headline-md text-on-surface w-full focus:ring-0 p-0 placeholder:text-on-surface-variant/30" placeholder="Untitled Report" type="text" value="Lab Report: Neural Synapse Response Rate"/>
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container rounded border border-secondary/10">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span>
+<span class="font-label-mono text-[10px] text-tertiary-fixed tracking-wider uppercase">Auto-saving</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<button class="p-1.5 rounded hover:bg-surface-variant transition-colors hover:text-on-surface"><span class="material-symbols-outlined text-[20px]" data-icon="format_h1">format_h1</span></button>
+<button class="p-1.5 rounded hover:bg-surface-variant transition-colors hover:text-on-surface"><span class="material-symbols-outlined text-[20px]" data-icon="format_h2">format_h2</span></button>
+<div class="w-[1px] h-4 bg-secondary/20 mx-2"></div>
+<button class="p-1.5 rounded hover:bg-surface-variant transition-colors hover:text-on-surface"><span class="material-symbols-outlined text-[20px]" data-icon="format_bold">format_bold</span></button>
+<button class="p-1.5 rounded hover:bg-surface-variant transition-colors hover:text-on-surface"><span class="material-symbols-outlined text-[20px]" data-icon="format_italic">format_italic</span></button>
+<button class="p-1.5 rounded hover:bg-surface-variant transition-colors hover:text-on-surface"><span class="material-symbols-outlined text-[20px]" data-icon="format_list_bulleted">format_list_bulleted</span></button>
+<div class="w-[1px] h-4 bg-secondary/20 mx-2"></div>
+<button class="p-1.5 rounded hover:bg-surface-variant transition-colors hover:text-on-surface"><span class="material-symbols-outlined text-[20px]" data-icon="code">code</span></button>
+<button class="p-1.5 rounded hover:bg-surface-variant transition-colors hover:text-on-surface"><span class="material-symbols-outlined text-[20px]" data-icon="link">link</span></button>
+</div>
+</div>
+<!-- Editor Body -->
+<div class="flex-1 overflow-y-auto p-6 font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+<p class="mb-4 text-on-surface">## Abstract</p>
+<p class="mb-6">The objective of this experimental phase was to observe the latency reduction in synthetic neural pathways when exposed to high-frequency pulse intervals. Initial hypotheses suggested a <span class="font-label-mono text-primary bg-primary/10 px-1 rounded">12.4%</span> increase in transmission efficiency.</p>
+<p class="mb-4 text-on-surface">## Methodology</p>
+<ul class="list-disc list-inside mb-6 space-y-2">
+<li>Isolation of protocol array <span class="font-label-mono text-label-mono text-secondary">A-77</span> in secure vacuum chamber.</li>
+<li>Application of stimulus at <span class="font-label-mono text-label-mono text-secondary">400Hz</span> baseline, scaling to <span class="font-label-mono text-label-mono text-secondary">1200Hz</span>.</li>
+<li>Real-time telemetry capture via AI monitoring node.</li>
+</ul>
+<div class="bg-surface-container border-l-2 border-primary p-4 mb-6 rounded-r font-label-mono text-sm text-secondary">
+                        &gt; "Unexpected resonance observed at 850Hz threshold. Recommend parallel analysis of structural integrity." - Dr. Aris
+                    </div>
+<textarea class="w-full h-32 bg-transparent border-none resize-none focus:ring-0 p-0 text-on-surface-variant placeholder:text-outline" placeholder="Continue findings here..."></textarea>
+</div>
+<!-- Editor Footer -->
+<div class="p-4 border-t border-secondary/20 flex justify-between items-center bg-surface/30">
+<div class="font-label-mono text-[12px] text-outline flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="info">info</span>
+                        Markdown Supported
+                    </div>
+<div class="flex gap-3">
+<button class="px-6 py-2 rounded-lg border border-secondary/30 text-on-surface bg-surface hover:bg-surface-variant transition-colors font-label-mono text-sm">Save Draft</button>
+<button class="px-6 py-2 rounded-lg bg-primary-container text-white font-label-mono text-sm hover:brightness-110 transition-all shadow-[0_0_15px_rgba(77,142,255,0.3)] border border-primary/50 flex items-center gap-2">
+                            Submit to Faculty
+                            <span class="material-symbols-outlined text-[18px]" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Right Column: Data Feed & History -->
+<section class="flex-[1.2] flex flex-col gap-gutter h-full">
+<!-- Live Data Feed (Lab Terminal Style) -->
+<div class="flex-[2] flex flex-col bg-[#020617] border border-secondary/20 border-t-2 border-t-tertiary-fixed rounded-xl overflow-hidden relative">
+<!-- Scanning aesthetic -->
+<div class="absolute left-0 right-0 h-[2px] bg-tertiary-fixed/30 shadow-[0_0_8px_rgba(172,248,71,0.8)] scan-line pointer-events-none z-10"></div>
+<div class="px-4 py-3 border-b border-secondary/10 flex justify-between items-center bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-fixed text-[18px]" data-icon="monitor_heart">monitor_heart</span>
+<span class="font-label-mono text-label-mono text-tertiary-fixed">LIVE DATA FEED</span>
+</div>
+<span class="font-label-mono text-[10px] text-secondary">NODE: AI-LAB-09</span>
+</div>
+<!-- Charts Area -->
+<div class="h-40 border-b border-secondary/10 p-4 relative flex items-end gap-1">
+<!-- Abstract Chart Bars -->
+<div class="w-full h-full flex items-end justify-between gap-1 opacity-80">
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors h-[20%] rounded-t"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors h-[40%] rounded-t"></div>
+<div class="w-full bg-primary/40 hover:bg-primary/60 transition-colors h-[35%] rounded-t"></div>
+<div class="w-full bg-primary/60 hover:bg-primary/80 transition-colors h-[60%] rounded-t relative"><div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-label-mono text-primary">60%</div></div>
+<div class="w-full bg-tertiary-fixed/50 hover:bg-tertiary-fixed/70 transition-colors h-[85%] rounded-t relative glow-effect border-t border-tertiary-fixed"><div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-label-mono text-tertiary-fixed">85%</div></div>
+<div class="w-full bg-primary/40 hover:bg-primary/60 transition-colors h-[50%] rounded-t"></div>
+<div class="w-full bg-primary/20 hover:bg-primary/40 transition-colors h-[30%] rounded-t"></div>
+</div>
+</div>
+<!-- Terminal Logs -->
+<div class="flex-1 overflow-y-auto p-4 font-label-mono text-[12px] leading-relaxed text-secondary space-y-1">
+<div class="flex gap-3"><span class="text-outline">14:02:11</span><span class="text-on-surface">Initializing protocol sequence...</span></div>
+<div class="flex gap-3"><span class="text-outline">14:02:15</span><span class="text-tertiary-fixed">Connection established: Array A-77</span></div>
+<div class="flex gap-3"><span class="text-outline">14:02:22</span><span class="text-on-surface">Applying baseline stimulus (400Hz)</span></div>
+<div class="flex gap-3"><span class="text-outline">14:03:01</span><span class="text-primary">Metric: Latency delta at -2.4ms</span></div>
+<div class="flex gap-3"><span class="text-outline">14:04:18</span><span class="text-on-surface">Scaling stimulus to 850Hz...</span></div>
+<div class="flex gap-3"><span class="text-outline">14:04:20</span><span class="text-error">WARN: Resonance anomaly detected.</span></div>
+<div class="flex gap-3"><span class="text-outline">14:04:25</span><span class="text-primary">Metric: Transmission efficiency +14.1%</span></div>
+<div class="flex gap-3"><span class="text-outline">14:05:00</span><span class="text-on-surface">Awaiting manual structural analysis input...</span><span class="w-2 h-4 bg-secondary animate-pulse inline-block align-middle ml-1"></span></div>
+</div>
+</div>
+<!-- Version History Sidebar (Stacked under data feed for better use of space in split pane) -->
+<div class="flex-[1] flex flex-col bg-surface/20 border border-secondary/20 rounded-xl overflow-hidden backdrop-blur-sm">
+<div class="px-4 py-3 border-b border-secondary/10 flex items-center gap-2 bg-surface/40">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="history">history</span>
+<span class="font-label-mono text-sm text-on-surface">Version History</span>
+</div>
+<div class="flex-1 overflow-y-auto p-2">
+<!-- Current Version -->
+<div class="p-3 rounded-lg bg-primary/10 border border-primary/20 mb-2 cursor-pointer transition-colors">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-mono text-[11px] text-primary">CURRENT DRAFT</span>
+<span class="font-label-mono text-[10px] text-outline">Just now</span>
+</div>
+<div class="font-body-sm text-sm text-on-surface">Resonance anomaly notes added</div>
+</div>
+<!-- Previous Versions -->
+<div class="p-3 rounded-lg hover:bg-surface-variant transition-colors mb-1 cursor-pointer border border-transparent">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-mono text-[11px] text-secondary">v1.2</span>
+<span class="font-label-mono text-[10px] text-outline">10:45 AM</span>
+</div>
+<div class="font-body-sm text-sm text-on-surface-variant">Methodology structural update</div>
+</div>
+<div class="p-3 rounded-lg hover:bg-surface-variant transition-colors cursor-pointer border border-transparent">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-mono text-[11px] text-secondary">v1.0</span>
+<span class="font-label-mono text-[10px] text-outline">Yesterday</span>
+</div>
+<div class="font-body-sm text-sm text-on-surface-variant">Initial framework setup</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

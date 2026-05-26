@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAST Institute - Accelerating the Future</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Sora:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-container": "#4d8eff",
+                        "outline": "#8c909f",
+                        "on-secondary": "#283044",
+                        "on-secondary-container": "#adb4ce",
+                        "inverse-surface": "#d5e3fd",
+                        "on-surface": "#d5e3fd",
+                        "surface-variant": "#273649",
+                        "on-background": "#d5e3fd",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-tertiary-container": "#1a2f00",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#00285d",
+                        "tertiary-container": "#65a100",
+                        "on-error": "#690005",
+                        "on-tertiary": "#1f3700",
+                        "tertiary": "#91db2a",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#0d1c2f",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-tertiary-fixed-variant": "#304f00",
+                        "error-container": "#93000a",
+                        "outline-variant": "#424754",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-secondary-fixed": "#131b2e",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "inverse-on-surface": "#233144",
+                        "tertiary-fixed-dim": "#91db2a",
+                        "surface-container": "#122033",
+                        "inverse-primary": "#005ac2",
+                        "secondary-fixed": "#dae2fd",
+                        "background": "#051426",
+                        "secondary": "#bec6e0",
+                        "surface-tint": "#adc6ff",
+                        "tertiary-fixed": "#acf847",
+                        "surface-dim": "#051426",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-lowest": "#010f21",
+                        "secondary-container": "#3f465c",
+                        "on-primary": "#002e6a",
+                        "surface-bright": "#2c3a4e",
+                        "surface-container-highest": "#273649",
+                        "surface": "#051426",
+                        "primary-fixed": "#d8e2ff",
+                        "on-tertiary-fixed": "#102000",
+                        "surface-container-high": "#1c2b3e",
+                        "primary": "#adc6ff"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    spacing: {
+                        "stack-lg": "32px",
+                        "unit": "4px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "stack-md": "16px",
+                        "margin": "32px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["Sora"],
+                        "display-lg": ["Sora"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Sora"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg": ["Sora"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.1em", fontWeight: "700" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "600" }],
+                        "display-lg": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "500" }],
+                        "label-mono": ["14px", { lineHeight: "1.4", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0F172A; } /* Deep Navy base layer from Style Guidance */
+        .glass-panel {
+            background-color: rgba(51, 65, 85, 0.4); /* Slate Gray 40% */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(77, 142, 255, 0.2); /* Electric Blue 20% */
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 15px rgba(77, 142, 255, 0.5);
+            border-color: rgba(77, 142, 255, 0.8);
+        }
+        .text-glow {
+            text-shadow: 0 0 8px rgba(77, 142, 255, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-50 bg-surface/40 dark:bg-surface/40 backdrop-blur-xl border-b border-outline-variant/20 flat no shadows flex justify-between items-center w-full px-margin py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-lg text-headline-lg font-bold tracking-tighter text-primary dark:text-primary">FAST</span>
+</div>
+<nav class="hidden md:flex gap-stack-lg">
+<!-- This is a landing page, active state might be tricky, assuming Home/Main intent, highlighting none specifically to let the content breathe, but keeping inactive style -->
+<a class="text-on-surface-variant font-medium font-label-mono text-label-mono hover:text-primary transition-colors duration-200" href="#">Get Started</a>
+<a class="text-on-surface-variant font-medium font-label-mono text-label-mono hover:text-primary transition-colors duration-200" href="#">Resources</a>
+<a class="text-on-surface-variant font-medium font-label-mono text-label-mono hover:text-primary transition-colors duration-200" href="#">Scholarships</a>
+</nav>
+<div class="flex items-center gap-stack-md text-primary dark:text-primary">
+<button aria-label="Search" class="opacity-80 hover:opacity-100 hover:scale-95 transition-all">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button aria-label="Notifications" class="opacity-80 hover:opacity-100 hover:scale-95 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button aria-label="Terminal" class="opacity-80 hover:opacity-100 hover:scale-95 transition-all">
+<span class="material-symbols-outlined">terminal</span>
+</button>
+<button aria-label="Account" class="opacity-80 hover:opacity-100 hover:scale-95 transition-all">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<main class="flex-grow flex flex-col">
+<!-- Hero Section -->
+<section class="relative min-h-[819px] flex items-center justify-center px-margin py-stack-lg overflow-hidden">
+<!-- Abstract background element -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-primary/20 blur-[120px]"></div>
+</div>
+<div class="relative z-10 max-w-4xl text-center flex flex-col items-center gap-stack-lg">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-tertiary/30 bg-tertiary/10 text-tertiary font-label-mono text-label-mono mb-stack-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                    System Online
+                </div>
+<h1 class="font-display-lg text-display-lg md:text-[72px] md:leading-[1.1] text-on-surface tracking-tighter">
+                    Accelerating the <span class="text-primary text-glow">Future</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    The preeminent institution for high-density research and experimental cognitive architectures. Join the vanguard of neural-linked education.
+                </p>
+<div class="flex flex-wrap justify-center gap-stack-md mt-stack-md">
+<button class="bg-primary hover:bg-primary-container text-on-primary font-label-mono text-label-mono px-8 py-4 rounded transition-all duration-300 shadow-[0_0_15px_rgba(77,142,255,0.3)] hover:shadow-[0_0_25px_rgba(77,142,255,0.6)]">
+                        Initialize Sequence
+                    </button>
+<button class="glass-panel text-on-surface font-label-mono text-label-mono px-8 py-4 rounded glow-effect transition-all duration-300 flex items-center gap-2">
+<span class="material-symbols-outlined">biotech</span>
+                        View Labs
+                    </button>
+</div>
+</div>
+</section>
+<!-- Platform Overview Bento Grid -->
+<section class="px-margin py-stack-lg max-w-container-max mx-auto w-full">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-stack-lg flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+                Platform Architecture
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Large Feature -->
+<div class="md:col-span-8 glass-panel p-stack-lg rounded-xl flex flex-col justify-between min-h-[400px] relative overflow-hidden group">
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
+<div class="z-10 relative">
+<span class="font-label-mono text-label-mono text-primary mb-stack-sm block">Core Systems</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-md">Neural-Linked Environments</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Our proprietary interface allows seamless data transfer between cognitive streams and digital laboratory tools, reducing friction in high-stakes research.</p>
+</div>
+<div class="mt-stack-lg relative z-10 w-full h-48 border-t border-primary/30 pt-stack-md flex items-end">
+<img class="w-full h-full object-cover rounded border border-outline-variant/30 opacity-70 group-hover:opacity-100 transition-opacity duration-500" data-alt="A sleek, modern server room illuminated by cool blue and vibrant cyan LED lights, representing high-tech neural-linked infrastructure. The perspective is a wide shot looking down an aisle of pristine, metallic server racks. The mood is clinical, advanced, and powerful, fitting a top-tier research facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsgAwbD9kB30She3GhiTxMeqaKf98y2b0ued-jqjmrsqufXvQi7LnOfZp1pmNXruZRgA7XZy1wWq6iKzPAX0l9EtUaFyaf-mFzlxzOT0Y818LhsOeRQKJnPAH0So2eGQ12ieiMHM6IQQAXDXweS2MTulbicH8MZa5hVifTIHVcI_SG6KL3cOfcwpr3oS-qharlx7Clr2nkHrITOZHFES4BLi87Qrpx20xw9wyB8z5oc9m5_6zgku9EKo9gzGs0-PVmU4_aEqvkR7tX"/>
+</div>
+</div>
+<!-- Small Features -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<div class="glass-panel p-stack-md rounded-xl flex-grow glow-effect transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded bg-surface-container-high border border-outline-variant/30 flex items-center justify-center text-primary mb-stack-md group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface text-lg mb-2">Experimental Labs</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Access to level 4 research facilities with real-time global collaboration nodes.</p>
+</div>
+<div class="glass-panel p-stack-md rounded-xl flex-grow glow-effect transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded bg-surface-container-high border border-outline-variant/30 flex items-center justify-center text-primary mb-stack-md group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">library_books</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface text-lg mb-2">Global Archives</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Petabytes of indexed, cross-referenced theoretical papers and raw data streams.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Global Metrics -->
+<section class="px-margin py-stack-lg border-y border-outline-variant/20 bg-surface-container-low/50 relative overflow-hidden">
+<div class="max-w-container-max mx-auto w-full grid grid-cols-2 md:grid-cols-4 gap-stack-lg text-center relative z-10">
+<div>
+<div class="font-display-lg text-display-lg text-primary text-glow mb-2">12.4k</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant">Active Researchers</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-primary text-glow mb-2">890</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant">Live Experiments</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-primary text-glow mb-2">2.1PB</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant">Data Processed Daily</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-primary text-glow mb-2">99.9%</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant">System Uptime</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full px-margin py-stack-lg flex flex-col md:flex-row justify-between items-center gap-stack-md bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 flat no shadows mt-auto">
+<div class="font-headline-md text-headline-md text-on-surface">FAST</div>
+<nav class="flex flex-wrap justify-center gap-stack-md">
+<a class="text-on-surface-variant font-label-mono text-label-mono hover:text-tertiary transition-colors focus:ring-1 focus:ring-tertiary focus:ring-offset-2" href="#">Privacy Protocol</a>
+<a class="text-on-surface-variant font-label-mono text-label-mono hover:text-tertiary transition-colors focus:ring-1 focus:ring-tertiary focus:ring-offset-2" href="#">Ethics Board</a>
+<a class="text-on-surface-variant font-label-mono text-label-mono hover:text-tertiary transition-colors focus:ring-1 focus:ring-tertiary focus:ring-offset-2" href="#">Grant Applications</a>
+<a class="text-on-surface-variant font-label-mono text-label-mono hover:text-tertiary transition-colors focus:ring-1 focus:ring-tertiary focus:ring-offset-2" href="#">API Documentation</a>
+<a class="text-on-surface-variant font-label-mono text-label-mono hover:text-tertiary transition-colors focus:ring-1 focus:ring-tertiary focus:ring-offset-2" href="#">Neural Terms</a>
+</nav>
+<div class="text-on-surface-variant font-body-md text-body-md text-sm text-center md:text-right">
+            © 2024 Future Academy of Science and Technology. Neural-Link Enabled.
+        </div>
+</footer>
+<!-- Chatbook Widget -->
+<div class="fixed bottom-6 right-6 z-50">
+<button class="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-[0_0_20px_rgba(77,142,255,0.4)] hover:shadow-[0_0_30px_rgba(77,142,255,0.6)] transition-all transform hover:scale-105" id="chat-toggle">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">forum</span>
+</button>
+<!-- Chat Panel (Hidden by default, basic structure for preview) -->
+<div class="hidden absolute bottom-20 right-0 w-80 glass-panel rounded-xl border border-primary/30 flex flex-col overflow-hidden shadow-2xl origin-bottom-right transition-transform duration-300" id="chat-panel">
+<div class="bg-surface-container border-b border-primary/20 p-4 flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-sm text-on-surface">FAST Assistant</span>
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+</div>
+<div class="h-64 p-4 overflow-y-auto flex flex-col gap-3">
+<div class="self-start bg-surface-variant text-on-surface p-3 rounded-lg rounded-tl-sm text-sm font-body-md max-w-[85%]">
+                    System initialized. How can I assist with your research inquiries today?
+                </div>
+</div>
+<div class="p-3 border-t border-outline-variant/20 bg-surface-dim flex">
+<input class="bg-transparent border-none text-on-surface text-sm w-full focus:ring-0 font-label-mono placeholder:text-outline-variant" placeholder="Query database..." type="text"/>
+<button class="text-primary hover:text-primary-container">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+        // Simple chat toggle interaction
+        document.getElementById('chat-toggle').addEventListener('click', function() {
+            const panel = document.getElementById('chat-panel');
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+            } else {
+                panel.classList.add('hidden');
+            }
+        });
+    </script>
+</body></html>
